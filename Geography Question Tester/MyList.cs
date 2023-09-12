@@ -126,6 +126,51 @@ namespace Geography_Question_Tester
             }
             return false;
         }
-        
+        public void CopyTo(T[] array)
+        {
+            CopyTo(array);
+        }
+        public int IndexOf(T item)
+        {
+            return Array.IndexOf(_items, item, 0, _size);
+        }
+        public T Find(Predicate<T> match)
+        {
+            if (match == null)
+            {
+                //throw Argument expception
+            }
+            for (int i = 0; i < _size; i++)
+            {
+                if (match(_items[i]))
+                {
+                    return _items[i];
+                }
+            }
+            return default(T);
+        }
+        public MyList<T> FindAll(Predicate<T> match)//Programming note - Predicate<T> is the object you are looking for that being a data type or etc
+        {
+            MyList<T> List = new MyList<T>();
+            if (match == null)
+            {
+                //throw Argument expception
+            }
+            for (int i = 0; i < _size; i++)
+            {
+                if (match(_items[i]))
+                {
+                    List.Add(_items[i]);
+                }
+            }
+            return List;
+        }
+
+
+        public bool Exists(Predicate<T> match)
+        {
+            //return findIndex(match) != -1;
+        }
+
     }
 }
