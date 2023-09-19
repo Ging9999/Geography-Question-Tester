@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 
 namespace Geography_Question_Tester
 {
-    public class MyList<T> : IList<T>
+    public class MyList<T>
     {
         private int _size;
         private T[] _items;
@@ -50,8 +43,8 @@ namespace Geography_Question_Tester
             _items = _emptyArray;
         }
         public MyList(int size)
-        {            
-            if(size < 0)
+        {
+            if (size < 0)
             {
                 // need to implement exception so that negative values are not excepted
             }
@@ -65,22 +58,22 @@ namespace Geography_Question_Tester
 
             }
         }
-        
-        
+
+
 
         public T this[int index]
         {
-            get 
+            get
             {
-                if(index >= _size)
+                if (index >= _size)
                 {
                     //Throw out of range exception
                 }
                 return _items[index];
             }
-            set 
+            set
             {
-                if(index >= _size)
+                if (index >= _size)
                 {
                     //throw out of range exception
                 }
@@ -89,7 +82,7 @@ namespace Geography_Question_Tester
         }
         public void Add(T item)
         {
-            if(_size == _items.Length) 
+            if (_size == _items.Length)
             {
                 CheckCapacity(_size + 1);
                 _items[_size++] = item;
@@ -97,16 +90,16 @@ namespace Geography_Question_Tester
         }
         private void CheckCapacity(int min)
         {
-            if(_items.Length < min)
+            if (_items.Length < min)
             {
-                int newCapacity = _items.Length == 0? _regularCapcity : _items.Length * 2; // increase's the capacity twice
+                int newCapacity = _items.Length == 0 ? _regularCapcity : _items.Length * 2; // increase's the capacity twice
                 Capacity = newCapacity;
             }
 
         }
         public void Clear()
         {
-            if(_size > 0)
+            if (_size > 0)
             {
                 Array.Clear(_items, 0, _size);
                 _size = 0;
@@ -114,15 +107,15 @@ namespace Geography_Question_Tester
         }
         public bool Contains(T item)
         {
-            if((object) item == null)
+            if ((object)item == null)
             {
-                for(int i =0; i < _size; i++)
+                for (int i = 0; i < _size; i++)
                 {
-                    if ((object) _items[i] == null)
+                    if ((object)_items[i] == null)
                     {
                         return true;
                     }
-                }               
+                }
             }
             return false;
         }
@@ -169,9 +162,73 @@ namespace Geography_Question_Tester
 
         public bool Exists(Predicate<T> match)
         {
-            //return findIndex(match) != -1;
+            return FindIndex(match) != -1;
         }
         //tests
-
+        public int FindIndex(Predicate<T> match)
+        {
+            return FindIndex(0, _size, match);
+        }
+        public int FindIndex(int startIndex, Predicate<T> match)
+        {
+            return FindIndex(startIndex, _size - startIndex, match);
+        }
+        public int FindIndex(int startIndex, int count, Predicate<T> match)
+        {
+            int endIndex = startIndex + count;
+            for (int i = startIndex; i < endIndex; i++)
+            {
+                if (match(_items[i]))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        public T FindLast(Predicate<T> match)
+        {
+            for (int i = _size - 1; i >= 0; i--)
+            {
+                if (match(_items[i]))
+                {
+                    return _items[i];
+                }
+            }
+            return default(T);
+        }
+        public void Insert(int index, T item)
+        {
+            if (_size == _items.Length)
+            {
+                CheckCapacity(_size + 1);
+            }
+            if (index < 0)
+            {
+                Array.Copy(_items, index, _items, index + 1, _size - index);
+            }
+            _items[index] = item;
+            _size++;
+        }
+        public void RemoveAt(int index)
+        {
+            _size--;
+            if (index < _size)
+            {
+                Array.Copy(_items, index + 1, _items, index, _size - index);
+            }
+            _items[_size] = default(T);
+        }
+        public bool Remove(T item)
+        {
+            int index = IndexOf(item);
+            if (index >= 0)
+            {
+                RemoveAt(index);
+                return true;
+            }
+            return false; // not in index range if false
+        }
+        // implement some sort of sorting function
+      
     }
 }

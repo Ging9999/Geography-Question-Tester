@@ -16,7 +16,7 @@ namespace Geography_Question_Tester
     {  
         static void Main(string[] args)
         {
-            IList<Student> CurrentStudents = new List<Student>();         
+            /*IList<Student> CurrentStudents = new List<Student>();         
             if (CurrentStudents.Count == 0)
             {
                 Student student = CreateStudent(CurrentStudents);
@@ -43,11 +43,26 @@ namespace Geography_Question_Tester
                         break;
                     }
             }
+            */
+            MyList<int> myList = new MyList<int>();
+            myList.Add(1);
+            myList.Add(2);
+            myList.Add(3);
+            myList.Add(4);
+            Console.WriteLine(myList[0]);
+            Console.WriteLine(myList[1]);
+            Console.WriteLine(myList[2]);
+            Console.WriteLine(myList[3]);
             
+            Console.ReadLine();
+
+
+
+
         }
-        public static int MainMenu()
+        /*public static int MainMenu()
         {
-            Console.WriteLine("Please enter what you would like to do : ");
+            /*Console.WriteLine("Please enter what you would like to do : ");
             Console.WriteLine("1. Question Tester");
             Console.WriteLine("2. Flash Cards");
             Console.WriteLine("3. Quit");
@@ -85,5 +100,6 @@ namespace Geography_Question_Tester
             Student student = new Student(fname, lname, group, id);   
             return student;
         }
+            */
     }
 }
