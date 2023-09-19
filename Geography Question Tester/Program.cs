@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography;
@@ -47,15 +48,18 @@ namespace Geography_Question_Tester
             MyList<int> myList = new MyList<int>();
             myList.Add(1);
             myList.Add(2);
-            myList.Add(3);
-            myList.Add(4);
+            myList.Add(45);
+            myList.Add(54);
+            myList.Remove(45);
             Console.WriteLine(myList[0]);
             Console.WriteLine(myList[1]);
             Console.WriteLine(myList[2]);
             Console.WriteLine(myList[3]);
-            
             Console.ReadLine();
-
+            myList.Add(5);
+            Console.WriteLine(myList[4]);
+            Console.WriteLine(myList.Count);
+            
 
 
 

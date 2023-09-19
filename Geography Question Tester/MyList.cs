@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections;
 
 namespace Geography_Question_Tester
 {
@@ -85,6 +85,10 @@ namespace Geography_Question_Tester
             if (_size == _items.Length)
             {
                 CheckCapacity(_size + 1);
+                _items[_size++] = item;
+            }
+            else
+            {
                 _items[_size++] = item;
             }
         }
