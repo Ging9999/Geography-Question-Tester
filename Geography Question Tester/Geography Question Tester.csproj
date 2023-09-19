@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyQueue.cs" />
     <Compile Include="GeographyQuestionTester.cs" />
     <Compile Include="DeckGenerator.cs" />
     <Compile Include="MyList.cs" />

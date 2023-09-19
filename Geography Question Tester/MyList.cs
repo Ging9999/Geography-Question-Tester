@@ -22,7 +22,7 @@ namespace Geography_Question_Tester
                     {
                         T[] newItems = new T[value];
                         if (_size > 0)
-                        {
+                        {                          
                             Array.Copy(_items, newItems, _size);  //initialises new array with the new size.
                         }
                         _items = newItems;
@@ -41,6 +41,7 @@ namespace Geography_Question_Tester
         public MyList()
         {
             _items = _emptyArray;
+            _size = 0;
         }
         public MyList(int size)
         {
@@ -65,9 +66,9 @@ namespace Geography_Question_Tester
         {
             get
             {
-                if (index >= _size)
+                if (index > _size)
                 {
-                    //Throw out of range exception
+                    throw new ArgumentOutOfRangeException();
                 }
                 return _items[index];
             }
@@ -84,22 +85,22 @@ namespace Geography_Question_Tester
         {
             if (_size == _items.Length)
             {
-                CheckCapacity(_size + 1);
-                _items[_size++] = item;
+                CheckCapacity(_size + 1);               
             }
-            else
-            {
-                _items[_size++] = item;
-            }
+            _items[_size] = item;           
+            _size++;
         }
         private void CheckCapacity(int min)
         {
             if (_items.Length < min)
             {
-                int newCapacity = _items.Length == 0 ? _regularCapcity : _items.Length * 2; // increase's the capacity twice
+                int newCapacity = _items.Length == 0 ? _regularCapcity :_items.Length * 2; // increase's the capacity twice
+                if(newCapacity < min)
+                {
+                    newCapacity = min;
+                }
                 Capacity = newCapacity;
             }
-
         }
         public void Clear()
         {
