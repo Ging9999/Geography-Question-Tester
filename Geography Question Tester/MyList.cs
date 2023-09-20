@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections;
 
 namespace Geography_Question_Tester
 {
     public class MyList<T>
     {
-        private int _size;
+        public int Size;
         private T[] _items;
         private T[] _emptyArray = new T[0];
         private const int _regularCapcity = 4;
@@ -21,9 +20,9 @@ namespace Geography_Question_Tester
                     if (value > 0)
                     {
                         T[] newItems = new T[value];
-                        if (_size > 0)
-                        {                          
-                            Array.Copy(_items, newItems, _size);  //initialises new array with the new size.
+                        if (Size > 0)
+                        {
+                            Array.Copy(_items, newItems, Size);  //initialises new array with the new size.
                         }
                         _items = newItems;
                     }
@@ -36,12 +35,12 @@ namespace Geography_Question_Tester
         }
         public int Count
         {
-            get { return _size; }
+            get { return Size; }
         }
         public MyList()
         {
             _items = _emptyArray;
-            _size = 0;
+            Size = 0;
         }
         public MyList(int size)
         {
@@ -66,7 +65,7 @@ namespace Geography_Question_Tester
         {
             get
             {
-                if (index > _size)
+                if (index > Size)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -74,7 +73,7 @@ namespace Geography_Question_Tester
             }
             set
             {
-                if (index >= _size)
+                if (index >= Size)
                 {
                     //throw out of range exception
                 }
@@ -83,19 +82,19 @@ namespace Geography_Question_Tester
         }
         public void Add(T item)
         {
-            if (_size == _items.Length)
+            if (Size == _items.Length)
             {
-                CheckCapacity(_size + 1);               
+                CheckCapacity(Size + 1);
             }
-            _items[_size] = item;           
-            _size++;
+            _items[Size] = item;
+            Size++;
         }
         private void CheckCapacity(int min)
         {
             if (_items.Length < min)
             {
-                int newCapacity = _items.Length == 0 ? _regularCapcity :_items.Length * 2; // increase's the capacity twice
-                if(newCapacity < min)
+                int newCapacity = _items.Length == 0 ? _regularCapcity : _items.Length * 2; // increase's the capacity twice
+                if (newCapacity < min)
                 {
                     newCapacity = min;
                 }
@@ -104,17 +103,17 @@ namespace Geography_Question_Tester
         }
         public void Clear()
         {
-            if (_size > 0)
+            if (Size > 0)
             {
-                Array.Clear(_items, 0, _size);
-                _size = 0;
+                Array.Clear(_items, 0, Size);
+                Size = 0;
             }
         }
         public bool Contains(T item)
         {
             if ((object)item == null)
             {
-                for (int i = 0; i < _size; i++)
+                for (int i = 0; i < Size; i++)
                 {
                     if ((object)_items[i] == null)
                     {
@@ -130,7 +129,7 @@ namespace Geography_Question_Tester
         }
         public int IndexOf(T item)
         {
-            return Array.IndexOf(_items, item, 0, _size);
+            return Array.IndexOf(_items, item, 0, Size);
         }
         public T Find(Predicate<T> match)
         {
@@ -138,7 +137,7 @@ namespace Geography_Question_Tester
             {
                 //throw Argument expception
             }
-            for (int i = 0; i < _size; i++)
+            for (int i = 0; i < Size; i++)
             {
                 if (match(_items[i]))
                 {
@@ -154,7 +153,7 @@ namespace Geography_Question_Tester
             {
                 //throw Argument expception
             }
-            for (int i = 0; i < _size; i++)
+            for (int i = 0; i < Size; i++)
             {
                 if (match(_items[i]))
                 {
@@ -172,11 +171,11 @@ namespace Geography_Question_Tester
         //tests
         public int FindIndex(Predicate<T> match)
         {
-            return FindIndex(0, _size, match);
+            return FindIndex(0, Size, match);
         }
         public int FindIndex(int startIndex, Predicate<T> match)
         {
-            return FindIndex(startIndex, _size - startIndex, match);
+            return FindIndex(startIndex, Size - startIndex, match);
         }
         public int FindIndex(int startIndex, int count, Predicate<T> match)
         {
@@ -192,7 +191,7 @@ namespace Geography_Question_Tester
         }
         public T FindLast(Predicate<T> match)
         {
-            for (int i = _size - 1; i >= 0; i--)
+            for (int i = Size - 1; i >= 0; i--)
             {
                 if (match(_items[i]))
                 {
@@ -203,25 +202,25 @@ namespace Geography_Question_Tester
         }
         public void Insert(int index, T item)
         {
-            if (_size == _items.Length)
+            if (Size == _items.Length)
             {
-                CheckCapacity(_size + 1);
+                CheckCapacity(Size + 1);
             }
             if (index < 0)
             {
-                Array.Copy(_items, index, _items, index + 1, _size - index);
+                Array.Copy(_items, index, _items, index + 1, Size - index);
             }
             _items[index] = item;
-            _size++;
+            Size++;
         }
         public void RemoveAt(int index)
         {
-            _size--;
-            if (index < _size)
+            Size--;
+            if (index < Size)
             {
-                Array.Copy(_items, index + 1, _items, index, _size - index);
+                Array.Copy(_items, index + 1, _items, index, Size - index);
             }
-            _items[_size] = default(T);
+            _items[Size] = default(T);
         }
         public bool Remove(T item)
         {
@@ -234,6 +233,6 @@ namespace Geography_Question_Tester
             return false; // not in index range if false
         }
         // implement some sort of sorting function
-      
+
     }
 }

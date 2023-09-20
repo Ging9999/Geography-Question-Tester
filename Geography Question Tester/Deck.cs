@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Geography_Question_Tester
 {
-    internal class Deck
+    class Deck
     {
-        private IList<Question> _questions = new List<Question>();
+        private MyList<Question> _questions = new MyList<Question>();
         public int Length { get { return _questions.Count; } }
-        public Question GetQuestion() => _questions.FirstOrDefault();        
+        public Question GetQuestion() => _questions[0];    
         public void AddQuestion(Question question) => _questions.Add(question);
         public void RemoveQuestion(Question question) => _questions.Remove(question);
     }

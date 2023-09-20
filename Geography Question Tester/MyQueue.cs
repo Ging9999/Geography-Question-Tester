@@ -8,19 +8,37 @@ namespace Geography_Question_Tester
 {
     class MyQueue<T>
     {
-        private int _head;
-        private int _tail;
-        private int _capacity;
+        public int Size;
+        private int _fp;
+        private int _bp;
         private const int _defaultCapacity = 8;
-        private MyList<T> Queue;
+        private MyList<T> Queue = new MyList<T>(_defaultCapacity);
+
+        private int Capacity
+        {
+            get { return Queue.Size; } 
+            set 
+            {
+                if(value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                else
+                {
+                    Capacity
+                  
+                }
+            }
+        }
 
         public MyQueue()
         {
-            _capacity = _defaultCapacity;      
+            Capacity = _defaultCapacity;      
         }
         public MyQueue(int Capacity)
         {
             _capacity = Capacity;
+            Queue = new T[Capacity];
         }
 
     }

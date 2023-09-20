@@ -18,18 +18,17 @@ namespace Geography_Question_Tester
     internal class Question
     {
         public int Difficulty { get; set; } 
-        public int Marks { get; private set; }
         public string Title { get; private set; }
         public string Answer { get; private set; }
         public Topic Topic { get; private set; }
 
-        public Question(int marks, string question, string answer, Topic topic)
+        public Question(string question, string answer, Topic topic)
         {
-            Marks = marks;
             Title = question;   
             Answer = answer;
             Topic = topic;
         }       
+        
     }
     
 }

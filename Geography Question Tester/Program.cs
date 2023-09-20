@@ -17,45 +17,32 @@ namespace Geography_Question_Tester
     {  
         static void Main(string[] args)
         {
-            /*IList<Student> CurrentStudents = new List<Student>();         
-            if (CurrentStudents.Count == 0)
+            bool running = true;
+            while(running == true)
             {
-                Student student = CreateStudent(CurrentStudents);
-                CurrentStudents.Add(student);
-            }
-            else
-            {
-                
-            }
-            switch (MainMenu())
-            {
-                case 1:
-                    {
-                        GeographyQuestionTester geographyQuestionTester = new GeographyQuestionTester();
-                        geographyQuestionTester.StartTester();
-                        break;
-                    }
-                case 2:
-                    {
-                        break;
-                    }
-                case 3:
-                    {
-                        break;
-                    }
-            }
-            */
-            
-
-            
-            
-
-
-
+                switch (MainMenu())
+                {
+                    case 1:
+                        {
+                            GeographyQuestionTester geographyQuestionTester = new GeographyQuestionTester();
+                            geographyQuestionTester.StartTester();
+                            break;
+                        }
+                    case 2:
+                        {
+                            break;
+                        }
+                    case 3:
+                        {
+                            running = false;
+                            break;
+                        }
+                }
+            }                
         }
-        /*public static int MainMenu()
+        public static int MainMenu()
         {
-            /*Console.WriteLine("Please enter what you would like to do : ");
+            Console.WriteLine("Please enter what you would like to do : ");
             Console.WriteLine("1. Question Tester");
             Console.WriteLine("2. Flash Cards");
             Console.WriteLine("3. Quit");
@@ -93,6 +80,6 @@ namespace Geography_Question_Tester
             Student student = new Student(fname, lname, group, id);   
             return student;
         }
-            */
+            
     }
 }
