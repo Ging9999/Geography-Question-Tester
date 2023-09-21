@@ -13,7 +13,7 @@ namespace Geography_Question_Tester
         {
 
         }
-        public void AddQuestionBackToDeck(Question question, Deck questions, Student student)
+        public void AddQuestionBackToDeck(Flashcard question, Deck questions, Student student)
         {
             var tempdeck = student._currentDecks[student._currentDecks.Count - question.Difficulty];
         }

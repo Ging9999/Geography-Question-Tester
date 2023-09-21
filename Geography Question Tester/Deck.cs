@@ -8,10 +8,10 @@ namespace Geography_Question_Tester
 {
     class Deck
     {
-        private MyList<Question> _questions = new MyList<Question>();
+        private MyList<Flashcard> _questions = new MyList<Flashcard>();
         public int Length { get { return _questions.Count; } }
-        public Question GetQuestion() => _questions[0];    
-        public void AddQuestion(Question question) => _questions.Add(question);
-        public void RemoveQuestion(Question question) => _questions.Remove(question);
+        public Flashcard GetQuestion() => _questions[0];    
+        public void AddQuestion(Flashcard question) => _questions.Add(question);
+        public void RemoveQuestion(Flashcard question) => _questions.Remove(question);
     }
 }

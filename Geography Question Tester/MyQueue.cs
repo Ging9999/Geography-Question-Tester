@@ -25,7 +25,7 @@ namespace Geography_Question_Tester
                 }
                 else
                 {
-                    Capacity
+                    
                   
                 }
             }
@@ -37,8 +37,7 @@ namespace Geography_Question_Tester
         }
         public MyQueue(int Capacity)
         {
-            _capacity = Capacity;
-            Queue = new T[Capacity];
+            
         }
 
     }

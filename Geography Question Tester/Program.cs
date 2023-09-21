@@ -24,8 +24,7 @@ namespace Geography_Question_Tester
                 {
                     case 1:
                         {
-                            GeographyQuestionTester geographyQuestionTester = new GeographyQuestionTester();
-                            geographyQuestionTester.StartTester();
+                            
                             break;
                         }
                     case 2:

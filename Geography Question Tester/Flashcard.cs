@@ -15,14 +15,14 @@ namespace Geography_Question_Tester
     }
 
    
-    internal class Question
+    internal class Flashcard
     {
         public int Difficulty { get; set; } 
         public string Title { get; private set; }
         public string Answer { get; private set; }
         public Topic Topic { get; private set; }
 
-        public Question(string question, string answer, Topic topic)
+        public Flashcard(string question, string answer, Topic topic)
         {
             Title = question;   
             Answer = answer;

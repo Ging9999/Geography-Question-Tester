@@ -20,14 +20,7 @@ namespace Geography_Question_Tester
             Lname = lname;
             Group = group;
             ID = id;
-            Deck deck = new Deck();
-            Deck deck2 = new Deck();
-            Deck deck3 = new Deck();
-            Deck deck4 = new Deck();
-            _currentDecks.Add(deck);
-            _currentDecks.Add(deck2);
-            _currentDecks.Add(deck3);
-            _currentDecks.Add(deck4);
+            
         }       
     }
 }
