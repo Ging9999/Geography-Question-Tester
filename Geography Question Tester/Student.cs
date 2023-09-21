@@ -19,8 +19,7 @@ namespace Geography_Question_Tester
             Fname = fname;
             Lname = lname;
             Group = group;
-            ID = id;
-            
+            ID = id;          
         }       
     }
 }

@@ -16,40 +16,10 @@ namespace Geography_Question_Tester
     internal class Program
     {  
         static void Main(string[] args)
-        {
-            bool running = true;
-            while(running == true)
-            {
-                switch (MainMenu())
-                {
-                    case 1:
-                        {
-                            
-                            break;
-                        }
-                    case 2:
-                        {
-                            break;
-                        }
-                    case 3:
-                        {
-                            running = false;
-                            break;
-                        }
-                }
-            }                
+        {         
+          DataBaseUtils.CreateDB();
         }
-        public static int MainMenu()
-        {
-            Console.WriteLine("Please enter what you would like to do : ");
-            Console.WriteLine("1. Question Tester");
-            Console.WriteLine("2. Flash Cards");
-            Console.WriteLine("3. Quit");
-            Console.WriteLine();
-            Console.Write("Enter Choice: ");
-            int choice = Convert.ToInt32(Console.ReadLine());
-            return choice;
-        }
+        
         public static Student Login(IList<Student> CurrentStudents)
         {
             Console.WriteLine("Please enter your First Name");

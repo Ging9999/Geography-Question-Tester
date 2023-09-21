@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
+using System.Windows.Forms;
 
 namespace Geography_Question_Tester
 {
@@ -15,16 +16,24 @@ namespace Geography_Question_Tester
         private const string _FLASHCARDCONNECTION_STRING = @"Provider=Microsoft Jet 4.0 OLE DB Provider;Data Source = " + _FLASHCARDDB + ";";
         public static void CreateDB()
         {
-            if (!File.Exists(_FLASHCARDDB))
+            try
             {
-                CatalogClass db = new CatalogClass();
-                db.Create(_FLASHCARDCONNECTION_STRING);
-                string[] topics = { "ChangingPlaces", "NaturalHazards", "HotDeserts", "WaterCarbon" };
-                foreach(string topic in topics)
+                if (!File.Exists(_FLASHCARDDB))
                 {
-                    CreateTable(topic);
+                    CatalogClass db = new CatalogClass();
+                    db.Create(_FLASHCARDCONNECTION_STRING);
+                    string[] topics = { "ChangingPlaces", "NaturalHazards", "HotDeserts", "WaterCarbon" };
+                    foreach (string topic in topics)
+                    {
+                        CreateTable(topic);
+                    }
                 }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
         private static void CreateTable(string title)
         {
