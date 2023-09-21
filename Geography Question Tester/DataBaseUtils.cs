@@ -45,9 +45,9 @@ namespace Geography_Question_Tester
                 + "Topic VARCHAR(10),"
                 + "PRIMARY KEY(CardID)"
                 + ")";
-            ExecureSqlQuery(sSqlString);
+            ExecuteSqlQuery(sSqlString);
         }
-        public static void ExecureSqlQuery(string sSqlString)
+        public static void ExecuteSqlQuery(string sSqlString)
         {
             OleDbConnection connection = new OleDbConnection(_FLASHCARDCONNECTION_STRING);
             connection.Open();

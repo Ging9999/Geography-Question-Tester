@@ -17,6 +17,7 @@ namespace Geography_Question_Tester
    
     internal class Flashcard
     {
+        public int ID { get; set; }
         public int Difficulty { get; set; } 
         public string Title { get; private set; }
         public string Answer { get; private set; }
@@ -28,6 +29,7 @@ namespace Geography_Question_Tester
             Answer = answer;
             Topic = topic;
         }       
+        
         
     }
     
