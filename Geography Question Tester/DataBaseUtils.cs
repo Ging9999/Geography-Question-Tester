@@ -22,11 +22,7 @@ namespace Geography_Question_Tester
                 {
                     CatalogClass db = new CatalogClass();
                     db.Create(_FLASHCARDCONNECTION_STRING);
-                    string[] topics = { "ChangingPlaces", "NaturalHazards", "HotDeserts", "WaterCarbon" };
-                    foreach (string topic in topics)
-                    {
-                        CreateTable(topic);
-                    }
+                    CreateTable();
                 }
             }
             catch(Exception ex)
@@ -35,10 +31,10 @@ namespace Geography_Question_Tester
             }
             
         }
-        private static void CreateTable(string title)
+        private static void CreateTable()
         {
             string sSqlString;
-            sSqlString = "CREATE TABLE " + title + "("
+            sSqlString = "CREATE TABLE " + "FlashCards" + "("
                 + "CardID INT NOT NULL,"
                 + "Title VARCHAR(60),"
                 + "Answer VARCHAR(60),"
@@ -52,6 +48,7 @@ namespace Geography_Question_Tester
             OleDbConnection connection = new OleDbConnection(_FLASHCARDCONNECTION_STRING);
             connection.Open();
             OleDbCommand command = new OleDbCommand(sSqlString, connection);
+            command.ExecuteNonQuery();
             connection.Close();
         }
     }
