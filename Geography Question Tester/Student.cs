@@ -13,7 +13,7 @@ namespace Geography_Question_Tester
         public string Group { get; private set; }
         public int ID { get; private set; }
 
-        public IList<Deck> _currentDecks = new List<Deck>(); // temp change 
+        public IList<Deck> currentDecks = new List<Deck>(); // temp change 
         public Student(string fname, string lname, string group, int id)
         {
             Fname = fname;
