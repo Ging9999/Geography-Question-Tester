@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="DataBaseUtils.cs" />
     <Compile Include="MyQueue.cs" />
-    <Compile Include="GeographyQuestionTester.cs" />
     <Compile Include="DeckGenerator.cs" />
     <Compile Include="MyList.cs" />
     <Compile Include="Student.cs" />

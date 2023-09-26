@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Geography_Question_Tester
 {
@@ -22,7 +23,8 @@ namespace Geography_Question_Tester
                 {
                     CatalogClass db = new CatalogClass();
                     db.Create(_FLASHCARDCONNECTION_STRING);
-                    CreateTable();
+                    CreateStudentTable();
+                    CreateTopicTable();
                 }
             }
             catch(Exception ex)
@@ -31,7 +33,7 @@ namespace Geography_Question_Tester
             }
             
         }
-        private static void CreateTable()
+        private static void CreateTopicTable()
         {
             string sSqlString;
             sSqlString = "CREATE TABLE " + "FlashCards" + "("
@@ -43,6 +45,12 @@ namespace Geography_Question_Tester
                 + ")";
             ExecuteSqlQuery(sSqlString);
         }
+        private static void CreateStudentTable()
+        {
+            string sSqlString;
+            sSqlString = "CREATE TABLE Student(StudentID INT NOT NULL, Fname VARCHAR(10), Lname VARCHAR(10), Group VARCHAR(10), PRIMARY KEY(StudentID));";
+            ExecuteSqlQuery(sSqlString);
+        }
         public static void ExecuteSqlQuery(string sSqlString)
         {
             OleDbConnection connection = new OleDbConnection(_FLASHCARDCONNECTION_STRING);
@@ -50,6 +58,11 @@ namespace Geography_Question_Tester
             OleDbCommand command = new OleDbCommand(sSqlString, connection);
             command.ExecuteNonQuery();
             connection.Close();
+        }
+        public static void GetStudents()
+        {
+            string sSqlString = "SELECT * FROM Student";
+            ExecuteSqlQuery(sSqlString);
         }
     }
 }

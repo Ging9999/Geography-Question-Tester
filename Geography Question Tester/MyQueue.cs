@@ -7,37 +7,21 @@ using System.Threading.Tasks;
 namespace Geography_Question_Tester
 {
     class MyQueue<T>
-    {
-        public int Size;
-        private int _fp;
-        private int _bp;
-        private const int _defaultCapacity = 8;
-        private MyList<T> Queue = new MyList<T>(_defaultCapacity);
-
-        private int Capacity
+    {  
+        private MyList<T> Queue = new MyList<T>();
+        public T Pop()
         {
-            get { return Queue.Size; } 
-            set 
-            {
-                if(value <= 0)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-                else
-                {
-                    
-                  
-                }
-            }
+            T Value = Queue[0];
+            Queue.RemoveAt(0);
+            return Value;
         }
-
-        public MyQueue()
+        public T Peak()
         {
-            Capacity = _defaultCapacity;      
+            return Queue[0];
         }
-        public MyQueue(int Capacity)
+        public void Push(T value)
         {
-            
+            Queue.Add(value);
         }
 
     }
