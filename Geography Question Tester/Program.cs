@@ -18,7 +18,8 @@ namespace Geography_Question_Tester
         static void Main(string[] args)
         {         
           DataBaseUtils.CreateDB();
-          //Student student = Login();  
+          DataBaseUtils.AddStudent(1, "Joe", "Mama", "7Z");
+          
         }
         public static void TopicChooser(Student student)
         {

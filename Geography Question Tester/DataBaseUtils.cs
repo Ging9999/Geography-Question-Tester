@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Data.SqlTypes;
 
 namespace Geography_Question_Tester
 {
@@ -37,19 +38,25 @@ namespace Geography_Question_Tester
         {
             string sSqlString;
             sSqlString = "CREATE TABLE " + "FlashCards" + "("
-                + "CardID INT NOT NULL,"
+                + "CardID SHORT NOT NULL,"
                 + "Title VARCHAR(60),"
                 + "Answer VARCHAR(60),"
-                + "Topic VARCHAR(10),"
+                + "Topic VARCHAR(14),"
                 + "PRIMARY KEY(CardID)"
                 + ")";
             ExecuteSqlQuery(sSqlString);
         }
         private static void CreateStudentTable()
         {
-            string sSqlString;
-            sSqlString = "CREATE TABLE Student(StudentID INT NOT NULL, Fname VARCHAR(10), Lname VARCHAR(10), Group VARCHAR(10), PRIMARY KEY(StudentID));";
-            ExecuteSqlQuery(sSqlString);
+            string _sSqlString;
+            _sSqlString = "CREATE TABLE Student("
+                            + "StudentId SHORT NOT NULL,"
+                            + "Fname CHAR(30),"
+                            + "Lname CHAR(13),"
+                            + "Form CHAR(13),"
+                            + "PRIMARY KEY(StudentId)"
+                            + ")";
+            ExecuteSqlQuery(_sSqlString);
         }
         public static void ExecuteSqlQuery(string sSqlString)
         {
@@ -59,10 +66,21 @@ namespace Geography_Question_Tester
             command.ExecuteNonQuery();
             connection.Close();
         }
-        public static void GetStudents()
+        public static void AddFlashCard(int cardID, string Title, string Answer, Topic Topic)
         {
-            string sSqlString = "SELECT * FROM Student";
+            string sSqlString;
+            sSqlString = "INSERT INTO FlashCards(CardID, Title, Answer, Topic) " +
+               "Values('" + cardID + "', '" + Title + "', '" + Answer + "', '" + Topic + "')";
             ExecuteSqlQuery(sSqlString);
         }
+        public static void AddStudent(int StudentID, string Fname, string Lname, string Form)
+        {
+            string sSqlString;
+            sSqlString = "INSERT INTO Student(StudentID, Fname, Lname, Form) " +
+               "Values('" + StudentID + "', '" + Fname + "', '" + Lname + "', '" + Form + "')";
+            ExecuteSqlQuery(sSqlString);
+        }
+
+
     }
 }
