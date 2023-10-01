@@ -9,6 +9,7 @@ using System.Data.OleDb;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Data.SqlTypes;
+using System.Data;
 
 namespace Geography_Question_Tester
 {
@@ -44,7 +45,7 @@ namespace Geography_Question_Tester
                 + "Topic VARCHAR(14),"
                 + "PRIMARY KEY(CardID)"
                 + ")";
-            ExecuteSqlQuery(sSqlString);
+            ExecuteSqlNonQuery(sSqlString);
         }
         private static void CreateStudentTable()
         {
@@ -56,9 +57,9 @@ namespace Geography_Question_Tester
                             + "Form CHAR(13),"
                             + "PRIMARY KEY(StudentId)"
                             + ")";
-            ExecuteSqlQuery(_sSqlString);
+            ExecuteSqlNonQuery(_sSqlString);
         }
-        public static void ExecuteSqlQuery(string sSqlString)
+        public static void ExecuteSqlNonQuery(string sSqlString)
         {
             OleDbConnection connection = new OleDbConnection(_FLASHCARDCONNECTION_STRING);
             connection.Open();
@@ -66,19 +67,55 @@ namespace Geography_Question_Tester
             command.ExecuteNonQuery();
             connection.Close();
         }
+        public static DataTable ExecuteSqlQuery(String sSqlString)
+        {
+            DataTable dt = new DataTable();
+            OleDbConnection connection = new OleDbConnection(_FLASHCARDCONNECTION_STRING);
+            OleDbCommand command = new OleDbCommand(sSqlString, connection);
+            OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+            try
+            {
+                connection.Open();
+                adapter.Fill(dt);
+                connection.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return dt;
+        }
         public static void AddFlashCard(int cardID, string Title, string Answer, Topic Topic)
         {
             string sSqlString;
             sSqlString = "INSERT INTO FlashCards(CardID, Title, Answer, Topic) " +
                "Values('" + cardID + "', '" + Title + "', '" + Answer + "', '" + Topic + "')";
-            ExecuteSqlQuery(sSqlString);
+            ExecuteSqlNonQuery(sSqlString);
         }
         public static void AddStudent(int StudentID, string Fname, string Lname, string Form)
         {
             string sSqlString;
             sSqlString = "INSERT INTO Student(StudentID, Fname, Lname, Form) " +
                "Values('" + StudentID + "', '" + Fname + "', '" + Lname + "', '" + Form + "')";
-            ExecuteSqlQuery(sSqlString);
+            ExecuteSqlNonQuery(sSqlString);
+        }
+        public Flashcard GetFlashcard(int id)
+        {
+            string sSqlString;
+            sSqlString = "SELECT * FROM FlashCards WHERE CardID = '" + id + "';";
+            DataTable sqldata = ExecuteSqlQuery(sSqlString);
+            string Title = sqldata.Rows[1]["Title"].ToString();
+            string Answer = sqldata.Rows[2]["Answer"].ToString();
+            string stringTopic =  sqldata.Rows[2]["Answer"].ToString();
+            Topic Topic;
+            switch (stringTopic)
+            {
+                case "ChangingPlaces":
+                    stringTopic.ChangingPlaces
+            }
+           
+            Flashcard flashcard = new Flashcard();
+
         }
 
 

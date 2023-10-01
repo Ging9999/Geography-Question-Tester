@@ -23,8 +23,9 @@ namespace Geography_Question_Tester
         public string Answer { get; private set; }
         public Topic Topic { get; private set; }
 
-        public Flashcard(string question, string answer, Topic topic)
+        public Flashcard(int Id, string question, string answer, Topic topic)
         {
+            ID = Id;
             Title = question;   
             Answer = answer;
             Topic = topic;
