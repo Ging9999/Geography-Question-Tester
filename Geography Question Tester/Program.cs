@@ -19,6 +19,7 @@ namespace Geography_Question_Tester
         {         
           DataBaseUtils.CreateDB();
           DataBaseUtils.AddStudent(1, "Joe", "Mama", "7Z");
+          DataBaseUtils.GetFlashcard(1);
           
         }
         public static void TopicChooser(Student student)

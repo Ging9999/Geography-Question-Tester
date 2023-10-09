@@ -87,6 +87,7 @@ namespace Geography_Question_Tester
         }
         public static void AddFlashCard(int cardID, string Title, string Answer, Topic Topic)
         {
+            string enumTopic = Topic.GetType().ToString();
             string sSqlString;
             sSqlString = "INSERT INTO FlashCards(CardID, Title, Answer, Topic) " +
                "Values('" + cardID + "', '" + Title + "', '" + Answer + "', '" + Topic + "')";
@@ -99,23 +100,33 @@ namespace Geography_Question_Tester
                "Values('" + StudentID + "', '" + Fname + "', '" + Lname + "', '" + Form + "')";
             ExecuteSqlNonQuery(sSqlString);
         }
-        public Flashcard GetFlashcard(int id)
+        public static  Flashcard GetFlashcard(int id)
         {
             string sSqlString;
             sSqlString = "SELECT * FROM FlashCards WHERE CardID = '" + id + "';";
             DataTable sqldata = ExecuteSqlQuery(sSqlString);
-            string Title = sqldata.Rows[1]["Title"].ToString();
-            string Answer = sqldata.Rows[2]["Answer"].ToString();
-            string stringTopic =  sqldata.Rows[2]["Answer"].ToString();
-            Topic Topic;
-            switch (stringTopic)
+            MyList<Flashcard> flashcards;
+            foreach(DataRow row in sqldata.Rows)
             {
-                case "ChangingPlaces":
-                    stringTopic.ChangingPlaces
+                string Title = row["Title"].ToString();
+                string Answer = row["Answer"].ToString();
+                string topic = row["Topic"].ToString();
+                Topic Topic;
+                string[] ListOfTopics = Enum.GetNames(typeof(Topic));
+                for(int i = 0; i < ListOfTopics.Length; i++)
+                {
+                    if (ListOfTopics[i] == topic)
+                    {
+                        Topic = i;
+                    }
+                }
+                Flashcard flashcard = new Flashcard(id, Title, Answer, Topic);
             }
-           
-            Flashcard flashcard = new Flashcard();
+            
 
+
+
+            return null;
         }
 
 
