@@ -90,7 +90,7 @@ namespace Geography_Question_Tester
             string enumTopic = Topic.GetType().ToString();
             string sSqlString;
             sSqlString = "INSERT INTO FlashCards(CardID, Title, Answer, Topic) " +
-               "Values('" + cardID + "', '" + Title + "', '" + Answer + "', '" + Topic + "')";
+               "Values(" + cardID + ", '" + Title + "', '" + Answer + "', '" + Topic.ToString() + "')";
             ExecuteSqlNonQuery(sSqlString);
         }
         public static void AddStudent(int StudentID, string Fname, string Lname, string Form)
@@ -100,33 +100,31 @@ namespace Geography_Question_Tester
                "Values('" + StudentID + "', '" + Fname + "', '" + Lname + "', '" + Form + "')";
             ExecuteSqlNonQuery(sSqlString);
         }
-        public static  Flashcard GetFlashcard(int id)
+        public static MyList<Flashcard> GetFlashcard(int id)
         {
             string sSqlString;
-            sSqlString = "SELECT * FROM FlashCards WHERE CardID = '" + id + "';";
+            sSqlString = "SELECT * FROM FlashCards WHERE CardID = " + id + ";";
             DataTable sqldata = ExecuteSqlQuery(sSqlString);
-            MyList<Flashcard> flashcards;
+            MyList<Flashcard> flashcards = new MyList<Flashcard>(id);
             foreach(DataRow row in sqldata.Rows)
             {
                 string Title = row["Title"].ToString();
                 string Answer = row["Answer"].ToString();
                 string topic = row["Topic"].ToString();
-                Topic Topic;
+                Topic _topic = Topic.WaterCarbon;
                 string[] ListOfTopics = Enum.GetNames(typeof(Topic));
                 for(int i = 0; i < ListOfTopics.Length; i++)
                 {
                     if (ListOfTopics[i] == topic)
                     {
-                        Topic = i;
+                        Enum.TryParse(topic, out _topic);
                     }
                 }
-                Flashcard flashcard = new Flashcard(id, Title, Answer, Topic);
+                Flashcard flashcard = new Flashcard(id, Title, Answer, _topic);
+                flashcards.Add(flashcard);  
             }
-            
-
-
-
-            return null;
+            return flashcards;
+           
         }
 
 

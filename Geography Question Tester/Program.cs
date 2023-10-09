@@ -17,10 +17,15 @@ namespace Geography_Question_Tester
     {  
         static void Main(string[] args)
         {         
-          DataBaseUtils.CreateDB();
-          DataBaseUtils.AddStudent(1, "Joe", "Mama", "7Z");
-          DataBaseUtils.GetFlashcard(1);
-          
+              DataBaseUtils.CreateDB();
+              Topic topic = Topic.ChangingPlaces;
+              DataBaseUtils.AddFlashCard(1, "test", "test answer", topic);
+              var list = DataBaseUtils.GetFlashcard(1);
+              Flashcard test = list[0];
+              int value = test.ID;
+              Console.WriteLine(value);
+            Console.ReadLine(); 
+
         }
         public static void TopicChooser(Student student)
         {
