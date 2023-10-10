@@ -4,7 +4,7 @@ namespace Geography_Question_Tester
 {
     public class MyList<T>
     {
-        public int Size;
+        private int _size;
         private T[] _items;
         private T[] _emptyArray = new T[0];
         private const int _regularCapcity = 4;
@@ -20,9 +20,9 @@ namespace Geography_Question_Tester
                     if (value > 0)
                     {
                         T[] newItems = new T[value];
-                        if (Size > 0)
+                        for(int i = 0; i < _size; i++)
                         {
-                            Array.Copy(_items, newItems, Size);  //initialises new array with the new size.
+                            newItems[i] = _items[i];
                         }
                         _items = newItems;
                     }
@@ -35,12 +35,12 @@ namespace Geography_Question_Tester
         }
         public int Count
         {
-            get { return Size; }
+            get { return _size; }
         }
         public MyList()
         {
             _items = _emptyArray;
-            Size = 0;
+            _size = 0;
         }
         public MyList(int size)
         {
@@ -65,7 +65,7 @@ namespace Geography_Question_Tester
         {
             get
             {
-                if (index > Size)
+                if (index > _size)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -73,7 +73,7 @@ namespace Geography_Question_Tester
             }
             set
             {
-                if (index >= Size)
+                if (index >= _size)
                 {
                     //throw out of range exception
                 }
@@ -82,12 +82,12 @@ namespace Geography_Question_Tester
         }
         public void Add(T item)
         {
-            if (Size == _items.Length)
+            if (_size == _items.Length)
             {
-                CheckCapacity(Size + 1);
+                CheckCapacity(_size + 1);
             }
-            _items[Size] = item;
-            Size++;
+            _items[_size] = item;
+            _size++;
         }
         private void CheckCapacity(int min)
         {
@@ -103,17 +103,15 @@ namespace Geography_Question_Tester
         }
         public void Clear()
         {
-            if (Size > 0)
-            {
-                Array.Clear(_items, 0, Size);
-                Size = 0;
-            }
+            _items = _emptyArray;
+            _size = 0;
+            Capacity = 0;
         }
         public bool Contains(T item)
         {
             if ((object)item == null)
             {
-                for (int i = 0; i < Size; i++)
+                for (int i = 0; i < _size; i++)
                 {
                     if ((object)_items[i] == null)
                     {
@@ -122,105 +120,32 @@ namespace Geography_Question_Tester
                 }
             }
             return false;
-        }
-        public void CopyTo(T[] array)
-        {
-            CopyTo(array);
-        }
+        }        
         public int IndexOf(T item)
         {
-            return Array.IndexOf(_items, item, 0, Size);
-        }
-        public T Find(Predicate<T> match)
-        {
-            if (match == null)
-            {
-                //throw Argument expception
-            }
-            for (int i = 0; i < Size; i++)
-            {
-                if (match(_items[i]))
-                {
-                    return _items[i];
-                }
-            }
-            return default(T);
-        }
-        public MyList<T> FindAll(Predicate<T> match)//Programming note - Predicate<T> is the object you are looking for that being a data type or etc
-        {
-            MyList<T> List = new MyList<T>();
-            if (match == null)
-            {
-                //throw Argument expception
-            }
-            for (int i = 0; i < Size; i++)
-            {
-                if (match(_items[i]))
-                {
-                    List.Add(_items[i]);
-                }
-            }
-            return List;
-        }
-
-
-        public bool Exists(Predicate<T> match)
-        {
-            return FindIndex(match) != -1;
-        }
-        //tests
-        public int FindIndex(Predicate<T> match)
-        {
-            return FindIndex(0, Size, match);
-        }
-        public int FindIndex(int startIndex, Predicate<T> match)
-        {
-            return FindIndex(startIndex, Size - startIndex, match);
-        }
-        public int FindIndex(int startIndex, int count, Predicate<T> match)
-        {
-            int endIndex = startIndex + count;
-            for (int i = startIndex; i < endIndex; i++)
-            {
-                if (match(_items[i]))
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
-        public T FindLast(Predicate<T> match)
-        {
-            for (int i = Size - 1; i >= 0; i--)
-            {
-                if (match(_items[i]))
-                {
-                    return _items[i];
-                }
-            }
-            return default(T);
-        }
+            return Array.IndexOf(_items, item, 0, _size);
+        }                     
         public void Insert(int index, T item)
         {
-            if (Size == _items.Length)
+            if (_size == _items.Length)
             {
-                CheckCapacity(Size + 1);
+                CheckCapacity(_size + 1);
             }
             if (index < 0)
             {
-                Array.Copy(_items, index, _items, index + 1, Size - index);
+                Array.Copy(_items, index, _items, index + 1, _size - index);
             }
             _items[index] = item;
-            Size++;
+            _size++;
         }
         public void RemoveAt(int index)
         {
-            Size--;
-            if (index < Size)
+            _size--;
+            if (index < _size)
             {
-                Array.Copy(_items, index + 1, _items, index, Size - index);
+                Array.Copy(_items, index + 1, _items, index, _size - index);
             }
-            _items[Size] = default(T);
+            _items[_size] = default(T);
         }
         public bool Remove(T item)
         {

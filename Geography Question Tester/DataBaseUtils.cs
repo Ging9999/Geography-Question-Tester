@@ -85,7 +85,7 @@ namespace Geography_Question_Tester
             }
             return dt;
         }
-        public static void AddFlashCard(int cardID, string Title, string Answer, Topic Topic)
+        public static void AddFlashcard(int cardID, string Title, string Answer, Topic Topic)
         {
             string enumTopic = Topic.GetType().ToString();
             string sSqlString;
@@ -100,7 +100,7 @@ namespace Geography_Question_Tester
                "Values('" + StudentID + "', '" + Fname + "', '" + Lname + "', '" + Form + "')";
             ExecuteSqlNonQuery(sSqlString);
         }
-        public static MyList<Flashcard> GetFlashcard(int id)
+        public static Flashcard GetFlashcard(int id)
         {
             string sSqlString;
             sSqlString = "SELECT * FROM FlashCards WHERE CardID = " + id + ";";
@@ -111,7 +111,7 @@ namespace Geography_Question_Tester
                 string Title = row["Title"].ToString();
                 string Answer = row["Answer"].ToString();
                 string topic = row["Topic"].ToString();
-                Topic _topic = Topic.WaterCarbon;
+                Topic _topic = Topic.NA;
                 string[] ListOfTopics = Enum.GetNames(typeof(Topic));
                 for(int i = 0; i < ListOfTopics.Length; i++)
                 {
@@ -123,8 +123,11 @@ namespace Geography_Question_Tester
                 Flashcard flashcard = new Flashcard(id, Title, Answer, _topic);
                 flashcards.Add(flashcard);  
             }
-            return flashcards;
-           
+            return flashcards[0];          
+        }
+        public static Student GetStudent(int id)
+        {
+
         }
 
 

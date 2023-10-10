@@ -11,7 +11,8 @@ namespace Geography_Question_Tester
         ChangingPlaces,
         NaturalHazards,
         HotDeserts,
-        WaterCarbon
+        WaterCarbon,
+        NA
     }
 
    
