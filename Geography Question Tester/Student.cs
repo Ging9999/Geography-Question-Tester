@@ -10,7 +10,7 @@ namespace Geography_Question_Tester
     {
         public string Fname { get; private set; }
         public string Lname { get; private set; }
-        public string Group { get; private set; }
+        public string Form { get; private set; }
         public int ID { get; private set; }
 
         public IList<Deck> currentDecks = new List<Deck>(); // temp change 
@@ -18,7 +18,7 @@ namespace Geography_Question_Tester
         {
             Fname = fname;
             Lname = lname;
-            Group = group;
+            Form = group;
             ID = id;          
         }       
     }

@@ -127,7 +127,18 @@ namespace Geography_Question_Tester
         }
         public static Student GetStudent(int id)
         {
-
+            string sSqlString = "SELECT * FROM Student WHERE StudentID = " + id + ";";
+            DataTable sqldata = ExecuteSqlQuery(sSqlString);
+            MyList<Student> students = new MyList<Student>();
+            foreach(DataRow row in sqldata.Rows)
+            {
+                string Fname = row["Fname"].ToString();
+                string Lname = row["Lname"].ToString();
+                string Form = row["Form"].ToString();
+                Student student = new Student(Fname, Lname, Form, id);
+                students.Add(student);
+            }
+            return students[0];
         }
 
 

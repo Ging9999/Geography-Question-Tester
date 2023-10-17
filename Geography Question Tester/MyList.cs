@@ -4,10 +4,10 @@ namespace Geography_Question_Tester
 {
     public class MyList<T>
     {
-        private int _size;
-        private T[] _items;
-        private T[] _emptyArray = new T[0];
-        private const int _regularCapcity = 4;
+        protected int _size;
+        protected T[] _items;
+        protected T[] _emptyArray = new T[0];
+        protected const int _regularCapcity = 4;
         public int Capacity
         {
             get { return _items.Length; }
