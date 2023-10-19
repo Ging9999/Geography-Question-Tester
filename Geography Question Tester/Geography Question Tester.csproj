@@ -46,6 +46,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBaseUtils.cs" />
+    <Compile Include="Forms\AddFlashard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddFlashard.Designer.cs">
+      <DependentUpon>AddFlashard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewStats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewStats.Designer.cs">
+      <DependentUpon>ViewStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ReviseDecks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReviseDecks.Designer.cs">
+      <DependentUpon>ReviseDecks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ReviseTopics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReviseTopics.Designer.cs">
+      <DependentUpon>ReviseTopics.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyQueue.cs" />
     <Compile Include="DeckGenerator.cs" />
     <Compile Include="MyList.cs" />
@@ -68,6 +98,11 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,6 +10,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System;
+using System.Windows.Forms;
 
 namespace Geography_Question_Tester
 {
@@ -18,8 +20,7 @@ namespace Geography_Question_Tester
         static void Main(string[] args)
         {
             DataBaseUtils.CreateDB();
-              
-
+            Application.Run(new MainMenu());       
         }
         public static void TopicChooser(Student student)
         {

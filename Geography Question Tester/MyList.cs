@@ -58,9 +58,6 @@ namespace Geography_Question_Tester
 
             }
         }
-
-
-
         public T this[int index]
         {
             get

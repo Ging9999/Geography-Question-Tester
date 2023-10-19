@@ -30,9 +30,9 @@ namespace Geography_Question_Tester
             Title = question;   
             Answer = answer;
             Topic = topic;
+
         }       
-        
-        
+       
     }
-    
+   
 }
