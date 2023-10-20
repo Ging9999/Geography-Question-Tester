@@ -16,5 +16,11 @@ namespace Geography_Question_Tester
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MainMenu.Show();
+        }
     }
 }

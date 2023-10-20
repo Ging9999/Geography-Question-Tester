@@ -120,7 +120,7 @@ namespace Geography_Question_Tester
         }        
         public int IndexOf(T item)
         {
-            return Array.IndexOf(_items, item, 0, _size);
+            return Array.IndexOf(_items, item, 0, _size); // could implment sorce
         }                     
         public void Insert(int index, T item)
         {
