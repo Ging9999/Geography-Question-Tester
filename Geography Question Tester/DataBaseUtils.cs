@@ -140,6 +140,11 @@ namespace Geography_Question_Tester
             }
             return students[0];
         }
+        public static void UpdateFlashcard(int Id, string attribute, string value)
+        {
+            string sSqlString = "UPDATE Flashcards SET " + attribute + "=" + value.ToString() + "WHERE CardID =" + Id.ToString() + ";";
+            ExecuteSqlNonQuery(sSqlString);
+        }
         //implement update value
         //load decks
     }

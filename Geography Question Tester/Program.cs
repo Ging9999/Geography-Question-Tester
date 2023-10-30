@@ -20,7 +20,10 @@ namespace Geography_Question_Tester
         static void Main(string[] args)
         {
             DataBaseUtils.CreateDB();
-            Application.Run(new MainMenu());       
+            DataBaseUtils.AddFlashcard(1, "question", "Answer", Topic.ChangingPlaces);
+            DataBaseUtils.UpdateFlashcard(1, "Title", "Question");
+            //Application.Run(new MainMenu());
+            
         }
         public static void TopicChooser(Student student)
         {
@@ -79,6 +82,7 @@ namespace Geography_Question_Tester
             Student student = new Student(fname, lname, group, id);   
             return student;
         }
+        
             
     }
 }
