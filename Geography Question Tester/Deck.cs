@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,15 @@ namespace Geography_Question_Tester
 {
     class Deck
     {
-        private MyList<Flashcard> _questions = new MyList<Flashcard>(); // change to queue
-        private int _length { get { return _questions.Count; } }
+        private int _size;
+        public int ownerID { get;  private set; }
+        public Deck(int Size, int OwnerID)
+        {
+            _size = Size;
+            ownerID = OwnerID;
+        }
+        private MyQueue<Flashcard> _questions = new MyQueue<Flashcard>(); // change to queue
+        public int length { get { return _questions.Count; } }
         public Flashcard GetQuestion() => _questions[0];    
         public void AddQuestion(Flashcard question) => _questions.Add(question);
         public void RemoveQuestion(Flashcard question) => _questions.Remove(question);

@@ -20,8 +20,7 @@ namespace Geography_Question_Tester
         static void Main(string[] args)
         {
             DataBaseUtils.CreateDB();
-            DataBaseUtils.AddFlashcard(1, "question", "Answer", Topic.ChangingPlaces);
-            DataBaseUtils.UpdateFlashcard(1, "Title", "Question");
+            
             //Application.Run(new MainMenu());
             
         }

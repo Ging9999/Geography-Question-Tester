@@ -1,15 +1,11 @@
-﻿using System;
-using ADOX;
-using System.IO;
+﻿using ADOX;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.OleDb;
-using System.Windows.Forms;
-using System.Xml.Linq;
-using System.Data.SqlTypes;
 using System.Data;
+using System.Data.OleDb;
+using System.Drawing.Text;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Geography_Question_Tester
 {
@@ -29,11 +25,11 @@ namespace Geography_Question_Tester
                     CreateTopicTable();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
         private static void CreateTopicTable()
         {
@@ -79,7 +75,7 @@ namespace Geography_Question_Tester
                 adapter.Fill(dt);
                 connection.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -106,14 +102,14 @@ namespace Geography_Question_Tester
             sSqlString = "SELECT * FROM FlashCards WHERE CardID = " + id + ";";
             DataTable sqldata = ExecuteSqlQuery(sSqlString);
             MyList<Flashcard> flashcards = new MyList<Flashcard>(id);
-            foreach(DataRow row in sqldata.Rows)
+            foreach (DataRow row in sqldata.Rows)
             {
                 string Title = row["Title"].ToString();
                 string Answer = row["Answer"].ToString();
                 string topic = row["Topic"].ToString();
                 Topic _topic = Topic.NA;
                 string[] ListOfTopics = Enum.GetNames(typeof(Topic));
-                for(int i = 0; i < ListOfTopics.Length; i++)
+                for (int i = 0; i < ListOfTopics.Length; i++)
                 {
                     if (ListOfTopics[i] == topic)
                     {
@@ -121,16 +117,16 @@ namespace Geography_Question_Tester
                     }
                 }
                 Flashcard flashcard = new Flashcard(id, Title, Answer, _topic);
-                flashcards.Add(flashcard);  
+                flashcards.Add(flashcard);
             }
-            return flashcards[0];          
+            return flashcards[0];
         }
         public static Student GetStudent(int id)
         {
             string sSqlString = "SELECT * FROM Student WHERE StudentID = " + id + ";";
             DataTable sqldata = ExecuteSqlQuery(sSqlString);
             MyList<Student> students = new MyList<Student>();
-            foreach(DataRow row in sqldata.Rows)
+            foreach (DataRow row in sqldata.Rows)
             {
                 string Fname = row["Fname"].ToString();
                 string Lname = row["Lname"].ToString();
@@ -142,10 +138,59 @@ namespace Geography_Question_Tester
         }
         public static void UpdateFlashcard(int Id, string attribute, string value)
         {
-            string sSqlString = "UPDATE Flashcards SET " + attribute + "=" + value.ToString() + "WHERE CardID =" + Id.ToString() + ";";
+            string sSqlString = "UPDATE Flashcards SET " + attribute + " = '" + value.ToString() + "' WHERE CardID =" + Id.ToString() + ";";
             ExecuteSqlNonQuery(sSqlString);
         }
-        //implement update value
-        //load decks
-    }
+        public static void UpdateStudent(int StudentId, string attribute, string value)
+        {
+            string sSqlString = "UPDATE Student SET " + attribute + " = '" + value.ToString() + "' WHERE StudentID =" + StudentId.ToString() + ";";
+            ExecuteSqlNonQuery(sSqlString);
+        }
+        private MyList<Deck> LoadDecks(MyList<int[]> ListOfcardID, int[] owners)
+        {
+            MyList<Deck> ListOfDecks = new MyList<Deck>(ListOfcardID.Count);
+            for (int y = 0; y < ListOfDecks.Count; y++)
+            {
+                Deck currentdeck = new Deck(ListOfcardID[y].Length,owners[y]);
+                for (int x = 0; x < ListOfcardID[y].Length; x++)
+                {
+                    Flashcard currentflashcard = GetFlashcard(ListOfcardID[y][x]);
+                    currentdeck.AddQuestion(currentflashcard);
+                }
+                ListOfDecks.Add(currentdeck);
+            }
+            return ListOfDecks;
+        }
+        public static void SaveDecks(MyList<Deck> listofdecks)
+        {
+            string fileName = "Decks.txt";
+            try
+            {
+                using (StreamWriter SR = new StreamWriter(fileName))
+                {
+                    for (int x = 0; x < listofdecks.Count; x++)
+                    {
+                        SR.Write(listofdecks[x].ownerID + " ");
+                        for(int y = 0; y < listofdecks[x].length; y++)
+                        {
+                            for(int x = 0; y < listofdecks[x])
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+            
+
+
+     }
+
+
 }
+    //load decks - create function which writes owner of deck then the ids of the flashcards
+
+
