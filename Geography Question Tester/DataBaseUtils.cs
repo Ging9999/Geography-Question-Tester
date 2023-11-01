@@ -161,26 +161,42 @@ namespace Geography_Question_Tester
             }
             return ListOfDecks;
         }
-        public static void SaveDecks(MyList<Deck> listofdecks)
+        public static void WriteDecks(MyList<Deck> listofdecks)
         {
             string fileName = "Decks.txt";
             try
             {
-                using (StreamWriter SR = new StreamWriter(fileName))
+                using (StreamWriter SW = new StreamWriter(fileName))
                 {
                     for (int x = 0; x < listofdecks.Count; x++)
                     {
-                        SR.Write(listofdecks[x].ownerID + " ");
+                        SW.Write(listofdecks[x].ownerID + " ");
                         for(int y = 0; y < listofdecks[x].length; y++)
                         {
-                            for(int x = 0; y < listofdecks[x])
+                            SW.Write(listofdecks[x][y].ID + " ");
                         }
+                        SW.WriteLine("");
                     }
                 }
             }
             catch
             {
                 throw new Exception();
+            }
+        }
+        public MyList<int[]> GetDecksfromtxt()
+        {
+            string fileName = "Decks.txt";
+            try
+            {
+                using (StreamReader SR = new StreamReader(fileName))
+                {
+
+                }
+            }
+            catch
+            {
+
             }
         }
 

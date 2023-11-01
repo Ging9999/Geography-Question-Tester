@@ -20,7 +20,6 @@ namespace Geography_Question_Tester
         static void Main(string[] args)
         {
             DataBaseUtils.CreateDB();
-            
             //Application.Run(new MainMenu());
             
         }
