@@ -155,6 +155,11 @@ namespace Geography_Question_Tester
             return false; // not in index range if false
         }
         // implement some sort of sorting function
-
+        public T[] ToArray()
+        {
+            T[] array = new T[_size];
+            Array.Copy(_items, array, _size);
+            return array;
+        }
     }
 }

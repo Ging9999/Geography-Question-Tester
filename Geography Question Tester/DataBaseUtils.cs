@@ -31,6 +31,11 @@ namespace Geography_Question_Tester
             }
 
         }
+        public static void LoadData()
+        {
+            DataBaseUtils.L
+            DataBaseUtils.GetDecksfromtxt();
+        }
         private static void CreateTopicTable()
         {
             string sSqlString;
@@ -146,12 +151,16 @@ namespace Geography_Question_Tester
             string sSqlString = "UPDATE Student SET " + attribute + " = '" + value.ToString() + "' WHERE StudentID =" + StudentId.ToString() + ";";
             ExecuteSqlNonQuery(sSqlString);
         }
-        private MyList<Deck> LoadDecks(MyList<int[]> ListOfcardID, int[] owners)
+        private MyList<Deck> LoadDecks()
         {
+            int[] ListOfOwners;
+            MyList<int[]> ListOfcardID = new MyList<int[]>();
+            GetDecksfromtxt(ListOfcardID, ListOfOwners);
+
             MyList<Deck> ListOfDecks = new MyList<Deck>(ListOfcardID.Count);
             for (int y = 0; y < ListOfDecks.Count; y++)
             {
-                Deck currentdeck = new Deck(ListOfcardID[y].Length,owners[y]);
+                Deck currentdeck = new Deck(ListOfcardID[y].Length,ListOfOwners[y]);
                 for (int x = 0; x < ListOfcardID[y].Length; x++)
                 {
                     Flashcard currentflashcard = GetFlashcard(ListOfcardID[y][x]);
@@ -184,20 +193,39 @@ namespace Geography_Question_Tester
                 throw new Exception();
             }
         }
-        public MyList<int[]> GetDecksfromtxt()
+        public static void GetDecksfromtxt(out int[] ListofIds, out int[]Listofowners)
         {
+            string line;
+            MyList<int>[] idandowners = new MyList<int>[2];
+            MyList<int[]> listofdecks = new MyList<int[]>();
+            MyList<int> owners = new MyList<int>();
             string fileName = "Decks.txt";
             try
             {
                 using (StreamReader SR = new StreamReader(fileName))
                 {
-
+                    line = SR.ReadLine();
+                    while(line != null)
+                    {
+                        owners.Add(line[0]);
+                        MyList<int> templistid = new MyList<int>();
+                        for(int i = 2; i < line.Length; i += 2)
+                        {
+                            if (line[i] == ' ')
+                            {
+                                break;
+                            }
+                            templistid.Add(line[i]);
+                        }
+                        listofdecks.Add(templistid.ToArray());
+                    }
                 }
             }
             catch
             {
-
+               
             }
+            idandowners[0] = listofdecks;
         }
 
             
