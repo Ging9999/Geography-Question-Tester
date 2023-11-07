@@ -13,7 +13,7 @@ namespace Geography_Question_Tester
 {
     public partial class MainMenu : Form
     {
-        public MainMenu()
+        public MainMenu(Student currentstudent)
         {
             InitializeComponent();
         }

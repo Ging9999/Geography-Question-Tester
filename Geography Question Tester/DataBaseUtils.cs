@@ -1,9 +1,7 @@
 ﻿using ADOX;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using System.Drawing.Text;
 using System.IO;
 using System.Windows.Forms;
 
@@ -33,8 +31,8 @@ namespace Geography_Question_Tester
         }
         public static void LoadData()
         {
-            DataBaseUtils.L
-            DataBaseUtils.GetDecksfromtxt();
+            //DataBaseUtils.L
+            //DataBaseUtils.GetDecksfromtxt();
         }
         private static void CreateTopicTable()
         {
@@ -53,9 +51,9 @@ namespace Geography_Question_Tester
             string _sSqlString;
             _sSqlString = "CREATE TABLE Student("
                             + "StudentId SHORT NOT NULL,"
-                            + "Fname CHAR(30),"
-                            + "Lname CHAR(13),"
-                            + "Form CHAR(13),"
+                            + "Fname VARCHAR(30),"
+                            + "Lname VARCHAR(13),"
+                            + "Form VARCHAR(13),"
                             + "PRIMARY KEY(StudentId)"
                             + ")";
             ExecuteSqlNonQuery(_sSqlString);
@@ -151,16 +149,16 @@ namespace Geography_Question_Tester
             string sSqlString = "UPDATE Student SET " + attribute + " = '" + value.ToString() + "' WHERE StudentID =" + StudentId.ToString() + ";";
             ExecuteSqlNonQuery(sSqlString);
         }
-        private MyList<Deck> LoadDecks()
+        /*private MyList<Deck> LoadDecks()
         {
             int[] ListOfOwners;
             MyList<int[]> ListOfcardID = new MyList<int[]>();
-            GetDecksfromtxt(ListOfcardID, ListOfOwners);
+            GetDecksfromtxt(out ListOfcardID, out ListOfOwners);
 
             MyList<Deck> ListOfDecks = new MyList<Deck>(ListOfcardID.Count);
             for (int y = 0; y < ListOfDecks.Count; y++)
             {
-                Deck currentdeck = new Deck(ListOfcardID[y].Length,ListOfOwners[y]);
+                Deck currentdeck = new Deck(ListOfcardID[y].Length, ListOfOwners[y]);
                 for (int x = 0; x < ListOfcardID[y].Length; x++)
                 {
                     Flashcard currentflashcard = GetFlashcard(ListOfcardID[y][x]);
@@ -169,7 +167,7 @@ namespace Geography_Question_Tester
                 ListOfDecks.Add(currentdeck);
             }
             return ListOfDecks;
-        }
+        }*/
         public static void WriteDecks(MyList<Deck> listofdecks)
         {
             string fileName = "Decks.txt";
@@ -180,7 +178,7 @@ namespace Geography_Question_Tester
                     for (int x = 0; x < listofdecks.Count; x++)
                     {
                         SW.Write(listofdecks[x].ownerID + " ");
-                        for(int y = 0; y < listofdecks[x].length; y++)
+                        for (int y = 0; y < listofdecks[x].length; y++)
                         {
                             SW.Write(listofdecks[x][y].ID + " ");
                         }
@@ -193,7 +191,7 @@ namespace Geography_Question_Tester
                 throw new Exception();
             }
         }
-        public static void GetDecksfromtxt(out int[] ListofIds, out int[]Listofowners)
+        /*public static void GetDecksfromtxt(out int[] ListofIds, out int[]Listofowners)
         {
             string line;
             MyList<int>[] idandowners = new MyList<int>[2];
@@ -226,15 +224,15 @@ namespace Geography_Question_Tester
                
             }
             idandowners[0] = listofdecks;
-        }
-
-            
+        }*/
 
 
-     }
+
+
+    }
 
 
 }
-    //load decks - create function which writes owner of deck then the ids of the flashcards
+//load decks - create function which writes owner of deck then the ids of the flashcards
 
 

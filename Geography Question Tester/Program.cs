@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System;
 using System.Windows.Forms;
+using System.Net.Http.Headers;
 
 namespace Geography_Question_Tester
 {
@@ -20,8 +21,7 @@ namespace Geography_Question_Tester
         static void Main(string[] args)
         {
             DataBaseUtils.CreateDB();
-            //Application.Run(new MainMenu());
-            
+            Application.Run(new LoginMenu());     
         }
         public static void TopicChooser(Student student)
         {

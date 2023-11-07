@@ -45,7 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyStack.cs" />
     <Compile Include="DataBaseUtils.cs" />
+    <Compile Include="Forms\CreateAccountMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateAccountMenu.Designer.cs">
+      <DependentUpon>CreateAccountMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoginMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoginMenu.Designer.cs">
+      <DependentUpon>LoginMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddFlashard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +113,12 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\CreateAccountMenu.resx">
+      <DependentUpon>CreateAccountMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoginMenu.resx">
+      <DependentUpon>LoginMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
