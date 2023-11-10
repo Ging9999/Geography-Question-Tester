@@ -15,12 +15,20 @@ namespace Geography_Question_Tester
         public ReviseTopics()
         {
             InitializeComponent();
+            this.LoggedIn.Text = "Logged in as : " + MainMenu.CurrentStudent.Fname;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            //MainMenu.Show();
+            LoginMenu.BackStack.Pop().Show();
         }
+
+        private void LoggedIn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

@@ -55,7 +55,6 @@
             this.UsernameTxtBox.Name = "UsernameTxtBox";
             this.UsernameTxtBox.Size = new System.Drawing.Size(100, 20);
             this.UsernameTxtBox.TabIndex = 1;
-            this.UsernameTxtBox.Text = "John Doe";
             // 
             // PasswordTxtBox
             // 
@@ -65,7 +64,6 @@
             this.PasswordTxtBox.Name = "PasswordTxtBox";
             this.PasswordTxtBox.Size = new System.Drawing.Size(100, 20);
             this.PasswordTxtBox.TabIndex = 2;
-            this.PasswordTxtBox.Text = "12345";
             // 
             // UsernameLbl
             // 

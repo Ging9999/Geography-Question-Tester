@@ -191,6 +191,11 @@ namespace Geography_Question_Tester
                 throw new Exception();
             }
         }
+        public static int CreateIDs(string Fname, string Lname)
+        {
+            int id = (Fname.Length * Lname.Length) + Fname.Length + Lname.Length;
+            return id;
+        }
         /*public static void GetDecksfromtxt(out int[] ListofIds, out int[]Listofowners)
         {
             string line;

@@ -21,6 +21,7 @@ namespace Geography_Question_Tester
         private void CreateAccountbtn_Click(object sender, EventArgs e)
         {
             new CreateAccountMenu().Show();
+            BackStack.Push(this);
             this.Hide();
         }
 
@@ -37,6 +38,7 @@ namespace Geography_Question_Tester
                 {
                    new MainMenu(CurrentStudent).Show();
                    Hide();
+                   LoginMenu.BackStack.Push(this);
                 }
             }
             catch
@@ -44,7 +46,7 @@ namespace Geography_Question_Tester
                 MessageBox.Show("Incorrect Username or password", "error", MessageBoxButtons.OK);
             }
         }
-        private void OnHide() => LoginMenu.BackStack.Push(this);
+        
 
     }
 }

@@ -12,6 +12,7 @@ namespace Geography_Question_Tester
         int bp = 0;
         public T Pop()
         {
+            bp--;
             T temp = stack[bp];
             stack.RemoveAt(bp);
             return temp;

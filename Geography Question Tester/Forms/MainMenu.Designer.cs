@@ -32,6 +32,9 @@
             this.BtnReviseDecks = new System.Windows.Forms.Button();
             this.BtnViewStats = new System.Windows.Forms.Button();
             this.BtnAddFlashCard = new System.Windows.Forms.Button();
+            this.LogoutBtn = new System.Windows.Forms.Button();
+            this.LoggedInAs = new System.Windows.Forms.Label();
+            this.LoggedIn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnReviseTopics
@@ -74,11 +77,43 @@
             this.BtnAddFlashCard.UseVisualStyleBackColor = true;
             this.BtnAddFlashCard.Click += new System.EventHandler(this.BtnAddFlashCard_Click);
             // 
+            // LogoutBtn
+            // 
+            this.LogoutBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.LogoutBtn.Location = new System.Drawing.Point(0, 0);
+            this.LogoutBtn.Name = "LogoutBtn";
+            this.LogoutBtn.Size = new System.Drawing.Size(129, 60);
+            this.LogoutBtn.TabIndex = 4;
+            this.LogoutBtn.Text = "Logout";
+            this.LogoutBtn.UseVisualStyleBackColor = false;
+            this.LogoutBtn.Click += new System.EventHandler(this.LogoutBtn_Click);
+            // 
+            // LoggedInAs
+            // 
+            this.LoggedInAs.AutoSize = true;
+            this.LoggedInAs.Location = new System.Drawing.Point(633, 45);
+            this.LoggedInAs.Name = "LoggedInAs";
+            this.LoggedInAs.Size = new System.Drawing.Size(0, 13);
+            this.LoggedInAs.TabIndex = 5;
+            // 
+            // LoggedIn
+            // 
+            this.LoggedIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.LoggedIn.ForeColor = System.Drawing.Color.Black;
+            this.LoggedIn.Location = new System.Drawing.Point(681, 0);
+            this.LoggedIn.Name = "LoggedIn";
+            this.LoggedIn.Size = new System.Drawing.Size(120, 58);
+            this.LoggedIn.TabIndex = 6;
+            this.LoggedIn.UseVisualStyleBackColor = false;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LoggedIn);
+            this.Controls.Add(this.LoggedInAs);
+            this.Controls.Add(this.LogoutBtn);
             this.Controls.Add(this.BtnAddFlashCard);
             this.Controls.Add(this.BtnViewStats);
             this.Controls.Add(this.BtnReviseDecks);
@@ -86,6 +121,7 @@
             this.Name = "MainMenu";
             this.Text = "Geography Question Tester";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -95,5 +131,8 @@
         private System.Windows.Forms.Button BtnReviseDecks;
         private System.Windows.Forms.Button BtnViewStats;
         private System.Windows.Forms.Button BtnAddFlashCard;
+        private System.Windows.Forms.Button LogoutBtn;
+        private System.Windows.Forms.Label LoggedInAs;
+        private System.Windows.Forms.Button LoggedIn;
     }
 }
