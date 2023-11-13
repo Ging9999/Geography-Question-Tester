@@ -12,10 +12,20 @@ namespace Geography_Question_Tester
     {
         private int _size;
         public int ownerID { get;  private set; }
+
+        private State _state;
+        public Deck(int Size, int OwnerID, State state)
+        {
+            _size = Size;
+            ownerID = OwnerID;
+            _state = state;
+
+        }
         public Deck(int Size, int OwnerID)
         {
             _size = Size;
             ownerID = OwnerID;
+
         }
         private MyQueue<Flashcard> _questions = new MyQueue<Flashcard>(); // change to queue
         
@@ -34,5 +44,11 @@ namespace Geography_Question_Tester
                 return _questions[index];
             }
         }
+    }
+    public enum State
+    {
+        Keyword,
+        Definition,
+        Unassigned
     }
 }

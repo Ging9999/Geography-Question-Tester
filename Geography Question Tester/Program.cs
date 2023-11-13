@@ -21,65 +21,16 @@ namespace Geography_Question_Tester
         static void Main(string[] args)
         {
             DataBaseUtils.CreateDB();
-            Application.Run(new LoginMenu());     
-        }
-        public static void TopicChooser(Student student)
-        {
-            bool running = true;
-            do
-            {
-                Console.WriteLine("Please enter a topic you would like to do : ");
-                string topic = Console.ReadLine();
-                if (IsTopic(topic) == true)
-                {
+            DataBaseUtils.AddFlashcard(1, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
+            DataBaseUtils.AddFlashcard(2, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
+            DataBaseUtils.AddFlashcard(3, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
+            DataBaseUtils.AddFlashcard(4, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
+            DataBaseUtils.AddFlashcard(5, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
+            DataBaseUtils.AddFlashcard(6, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
+            Application.Run(new LoginMenu());
 
-                }
-                else
-                {
-                    Console.WriteLine("Please enter a valid topic");
-                }
-
-            }
-            while (!running);
         }
-        private static bool IsTopic(string SomeTopic)
-        {
-            string[] ListOfTopics = Enum.GetNames(typeof(Topic));
-            if (ListOfTopics.Contains(SomeTopic))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static Student Login(IList<Student> CurrentStudents)
-        {
-            Console.WriteLine("Please enter your First Name");
-            string Fname = Console.ReadLine();
-            Console.WriteLine("Please enter your Last Name");
-            string Lname = Console.ReadLine();
-            for(int i = 0; i < CurrentStudents.Count; i++)
-            {
-                if (CurrentStudents[i].Fname == Fname && CurrentStudents[i].Lname == Lname)
-                {
-                    return CurrentStudents[i];
-                }
-            }
-            return null;         
-        }
-
-        public static Student CreateStudent(IList<Student> CurrentStudents)
-        {            
-            Console.WriteLine("Please enter your first name");
-            string fname = Console.ReadLine();
-            Console.WriteLine("Please enter your last name");
-            string lname = Console.ReadLine();
-            Console.WriteLine("Please enter your class");
-            string group = Console.ReadLine();
-            int id = CurrentStudents.Count;
-            Student student = new Student(fname, lname, group, id);   
-            return student;
-        }
+        
         
             
     }

@@ -14,11 +14,6 @@ namespace Geography_Question_Tester
         WaterCarbon,
         NA
     }
-    public enum State
-    {
-        Deffinition,
-        term
-    }
 
    
     class Flashcard
@@ -37,6 +32,14 @@ namespace Geography_Question_Tester
             Topic = topic;
 
         }       
+        public Flashcard(int Id, string question, string answer, Topic topic, int difficulty)
+        {
+            ID = Id;
+            Title = question;
+            Answer = answer;
+            Topic = topic;
+            Difficulty = difficulty;
+        }
         
         
        

@@ -42,6 +42,7 @@ namespace Geography_Question_Tester
                 + "Title VARCHAR(60),"
                 + "Answer VARCHAR(60),"
                 + "Topic VARCHAR(14),"
+                + "Difficulty VARCHAR(10),"
                 + "PRIMARY KEY(CardID)"
                 + ")";
             ExecuteSqlNonQuery(sSqlString);
@@ -84,12 +85,12 @@ namespace Geography_Question_Tester
             }
             return dt;
         }
-        public static void AddFlashcard(int cardID, string Title, string Answer, Topic Topic)
+        public static void AddFlashcard(int cardID, string Title, string Answer, Topic Topic, int Difficulty)
         {
             string enumTopic = Topic.GetType().ToString();
             string sSqlString;
-            sSqlString = "INSERT INTO FlashCards(CardID, Title, Answer, Topic) " +
-               "Values(" + cardID + ", '" + Title + "', '" + Answer + "', '" + Topic.ToString() + "')";
+            sSqlString = "INSERT INTO FlashCards(CardID, Title, Answer, Topic, Difficulty) " +
+               "Values(" + cardID + ", '" + Title + "', '" + Answer + "', '" + Topic.ToString() + "', '" + Convert.ToInt32(Difficulty) + "')";
             ExecuteSqlNonQuery(sSqlString);
         }
         public static void AddStudent(int StudentID, string Fname, string Lname, string Form)
@@ -148,6 +149,34 @@ namespace Geography_Question_Tester
         {
             string sSqlString = "UPDATE Student SET " + attribute + " = '" + value.ToString() + "' WHERE StudentID =" + StudentId.ToString() + ";";
             ExecuteSqlNonQuery(sSqlString);
+        }
+        public static Deck GetQuestions(int difficulty, Topic topic)
+        {
+            string topicstring = topic.GetType().ToString();
+            string sSqlString = "SELECT * FROM FlashCards WHERE Topic = " + topicstring + " AND Difficulty = " + difficulty.ToString() + ";";
+            DataTable sqldata = ExecuteSqlQuery(sSqlString);
+            Deck MyDeck = new Deck(10, MainMenu.CurrentStudent.ID);
+            foreach(DataRow row in sqldata.Rows)
+            {
+                int id = Convert.ToInt32(row["CardID"]);
+                string Keyword = row["Title"].ToString();
+                string Definition = row["Answer"].ToString();
+                string Stopic = row["Topic"].ToString();
+                Topic _topic = Topic.NA;
+                string[] ListOfTopics = Enum.GetNames(typeof(Topic));
+                for (int i = 0; i < ListOfTopics.Length; i++)
+                {
+                    if (ListOfTopics[i] == Stopic)
+                    {
+                        Enum.TryParse(Stopic, out _topic);
+                    }
+                }
+                int Difficulty = Convert.ToInt32(row["Difficulty"]);
+                Flashcard flashcard = new Flashcard(id, Keyword, Definition, _topic);
+                MyDeck.AddQuestion(flashcard);
+            }
+            return MyDeck;
+
         }
         /*private MyList<Deck> LoadDecks()
         {
