@@ -21,12 +21,6 @@ namespace Geography_Question_Tester
         static void Main(string[] args)
         {
             DataBaseUtils.CreateDB();
-            DataBaseUtils.AddFlashcard(1, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
-            DataBaseUtils.AddFlashcard(2, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
-            DataBaseUtils.AddFlashcard(3, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
-            DataBaseUtils.AddFlashcard(4, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
-            DataBaseUtils.AddFlashcard(5, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
-            DataBaseUtils.AddFlashcard(6, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
             Application.Run(new LoginMenu());
 
         }

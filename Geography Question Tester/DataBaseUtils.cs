@@ -21,6 +21,13 @@ namespace Geography_Question_Tester
                     db.Create(_FLASHCARDCONNECTION_STRING);
                     CreateStudentTable();
                     CreateTopicTable();
+                    AddStudent(1, "Admin", "", "123");
+                    DataBaseUtils.AddFlashcard(1, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
+                    DataBaseUtils.AddFlashcard(2, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
+                    DataBaseUtils.AddFlashcard(3, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
+                    DataBaseUtils.AddFlashcard(4, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
+                    DataBaseUtils.AddFlashcard(5, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
+                    DataBaseUtils.AddFlashcard(6, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
                 }
             }
             catch (Exception ex)
@@ -152,8 +159,8 @@ namespace Geography_Question_Tester
         }
         public static Deck GetQuestions(int difficulty, Topic topic)
         {
-            string topicstring = topic.GetType().ToString();
-            string sSqlString = "SELECT * FROM FlashCards WHERE Topic = " + topicstring + " AND Difficulty = " + difficulty.ToString() + ";";
+            string topicstring = topic.ToString();
+            string sSqlString = "SELECT * FROM FlashCards WHERE Topic = '" + topicstring + "' AND Difficulty < " + difficulty.ToString() + ";";
             DataTable sqldata = ExecuteSqlQuery(sSqlString);
             Deck MyDeck = new Deck(10, MainMenu.CurrentStudent.ID);
             foreach(DataRow row in sqldata.Rows)
