@@ -10,20 +10,20 @@ namespace Geography_Question_Tester
 {
     class Deck
     {
-        private int _size;
+        public int size;
         public int ownerID { get;  private set; }
 
-        private State _state;
+        public State state { get; private set; }
         public Deck(int Size, int OwnerID, State state)
         {
-            _size = Size;
+            size = Size;
             ownerID = OwnerID;
-            _state = state;
+            state = state;
 
         }
         public Deck(int Size, int OwnerID)
         {
-            _size = Size;
+            size = Size;
             ownerID = OwnerID;
 
         }
@@ -37,7 +37,7 @@ namespace Geography_Question_Tester
         {
             get
             {
-                if (index > _size)
+                if (index > size)
                 {
                     throw new ArgumentOutOfRangeException();
                 }

@@ -39,7 +39,13 @@
             this.KeywordBtn = new System.Windows.Forms.Button();
             this.SelectTopicLbl = new System.Windows.Forms.Label();
             this.SelectTopicBox = new System.Windows.Forms.ComboBox();
+            this.FlashcardBox = new System.Windows.Forms.GroupBox();
+            this.Flashcardtermordefinition = new System.Windows.Forms.Button();
+            this.Guess1btn = new System.Windows.Forms.Button();
+            this.Guess2btn = new System.Windows.Forms.Button();
+            this.Guess3btn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.FlashcardBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // BackBtn
@@ -83,62 +89,68 @@
             // 
             // HardDifficultyBtn
             // 
+            this.HardDifficultyBtn.BackColor = System.Drawing.Color.White;
             this.HardDifficultyBtn.Location = new System.Drawing.Point(215, 219);
             this.HardDifficultyBtn.Name = "HardDifficultyBtn";
             this.HardDifficultyBtn.Size = new System.Drawing.Size(75, 23);
             this.HardDifficultyBtn.TabIndex = 7;
             this.HardDifficultyBtn.Text = "Hard";
-            this.HardDifficultyBtn.UseVisualStyleBackColor = true;
+            this.HardDifficultyBtn.UseVisualStyleBackColor = false;
             this.HardDifficultyBtn.Click += new System.EventHandler(this.HardDifficultyBtn_Click);
             // 
             // MediumDifficultyBtn
             // 
+            this.MediumDifficultyBtn.BackColor = System.Drawing.Color.White;
             this.MediumDifficultyBtn.Location = new System.Drawing.Point(115, 219);
             this.MediumDifficultyBtn.Name = "MediumDifficultyBtn";
             this.MediumDifficultyBtn.Size = new System.Drawing.Size(75, 23);
             this.MediumDifficultyBtn.TabIndex = 6;
             this.MediumDifficultyBtn.Text = "Medium";
-            this.MediumDifficultyBtn.UseVisualStyleBackColor = true;
+            this.MediumDifficultyBtn.UseVisualStyleBackColor = false;
             this.MediumDifficultyBtn.Click += new System.EventHandler(this.MediumDifficultyBtn_Click);
             // 
             // EasyDifficultyBtn
             // 
+            this.EasyDifficultyBtn.BackColor = System.Drawing.Color.White;
             this.EasyDifficultyBtn.Location = new System.Drawing.Point(24, 219);
             this.EasyDifficultyBtn.Name = "EasyDifficultyBtn";
             this.EasyDifficultyBtn.Size = new System.Drawing.Size(75, 23);
             this.EasyDifficultyBtn.TabIndex = 5;
             this.EasyDifficultyBtn.Text = "Easy";
-            this.EasyDifficultyBtn.UseVisualStyleBackColor = true;
+            this.EasyDifficultyBtn.UseVisualStyleBackColor = false;
             this.EasyDifficultyBtn.Click += new System.EventHandler(this.EasyDifficultyBtn_Click);
             // 
             // GetFlashcardsBtn
             // 
+            this.GetFlashcardsBtn.BackColor = System.Drawing.Color.White;
             this.GetFlashcardsBtn.Location = new System.Drawing.Point(100, 289);
             this.GetFlashcardsBtn.Name = "GetFlashcardsBtn";
             this.GetFlashcardsBtn.Size = new System.Drawing.Size(101, 39);
             this.GetFlashcardsBtn.TabIndex = 4;
             this.GetFlashcardsBtn.Text = "Get Flashcards";
-            this.GetFlashcardsBtn.UseVisualStyleBackColor = true;
+            this.GetFlashcardsBtn.UseVisualStyleBackColor = false;
             this.GetFlashcardsBtn.Click += new System.EventHandler(this.GetFlashcardsBtn_Click);
             // 
             // LearnDefinitionBtn
             // 
+            this.LearnDefinitionBtn.BackColor = System.Drawing.Color.White;
             this.LearnDefinitionBtn.Location = new System.Drawing.Point(175, 141);
             this.LearnDefinitionBtn.Name = "LearnDefinitionBtn";
             this.LearnDefinitionBtn.Size = new System.Drawing.Size(89, 41);
             this.LearnDefinitionBtn.TabIndex = 3;
             this.LearnDefinitionBtn.Text = "Learn Definition";
-            this.LearnDefinitionBtn.UseVisualStyleBackColor = true;
+            this.LearnDefinitionBtn.UseVisualStyleBackColor = false;
             this.LearnDefinitionBtn.Click += new System.EventHandler(this.LearnDefinitionBtn_Click);
             // 
             // KeywordBtn
             // 
+            this.KeywordBtn.BackColor = System.Drawing.Color.White;
             this.KeywordBtn.Location = new System.Drawing.Point(35, 141);
             this.KeywordBtn.Name = "KeywordBtn";
             this.KeywordBtn.Size = new System.Drawing.Size(89, 41);
             this.KeywordBtn.TabIndex = 2;
             this.KeywordBtn.Text = "Learn Keyword";
-            this.KeywordBtn.UseVisualStyleBackColor = true;
+            this.KeywordBtn.UseVisualStyleBackColor = false;
             this.KeywordBtn.Click += new System.EventHandler(this.KeywordBtn_Click_1);
             // 
             // SelectTopicLbl
@@ -163,11 +175,65 @@
             this.SelectTopicBox.Size = new System.Drawing.Size(121, 21);
             this.SelectTopicBox.TabIndex = 0;
             // 
+            // FlashcardBox
+            // 
+            this.FlashcardBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.FlashcardBox.Controls.Add(this.Guess3btn);
+            this.FlashcardBox.Controls.Add(this.Guess2btn);
+            this.FlashcardBox.Controls.Add(this.Guess1btn);
+            this.FlashcardBox.Controls.Add(this.Flashcardtermordefinition);
+            this.FlashcardBox.Location = new System.Drawing.Point(388, 64);
+            this.FlashcardBox.Name = "FlashcardBox";
+            this.FlashcardBox.Size = new System.Drawing.Size(377, 359);
+            this.FlashcardBox.TabIndex = 3;
+            this.FlashcardBox.TabStop = false;
+            this.FlashcardBox.Text = "Flashcards";
+            // 
+            // Flashcardtermordefinition
+            // 
+            this.Flashcardtermordefinition.BackColor = System.Drawing.Color.White;
+            this.Flashcardtermordefinition.Location = new System.Drawing.Point(47, 42);
+            this.Flashcardtermordefinition.Name = "Flashcardtermordefinition";
+            this.Flashcardtermordefinition.Size = new System.Drawing.Size(274, 129);
+            this.Flashcardtermordefinition.TabIndex = 0;
+            this.Flashcardtermordefinition.UseVisualStyleBackColor = false;
+            // 
+            // Guess1btn
+            // 
+            this.Guess1btn.BackColor = System.Drawing.Color.White;
+            this.Guess1btn.Location = new System.Drawing.Point(24, 177);
+            this.Guess1btn.Name = "Guess1btn";
+            this.Guess1btn.Size = new System.Drawing.Size(317, 23);
+            this.Guess1btn.TabIndex = 1;
+            this.Guess1btn.UseVisualStyleBackColor = false;
+            this.Guess1btn.Click += new System.EventHandler(this.Guess1btn_Click);
+            // 
+            // Guess2btn
+            // 
+            this.Guess2btn.BackColor = System.Drawing.Color.White;
+            this.Guess2btn.Location = new System.Drawing.Point(24, 206);
+            this.Guess2btn.Name = "Guess2btn";
+            this.Guess2btn.Size = new System.Drawing.Size(317, 23);
+            this.Guess2btn.TabIndex = 2;
+            this.Guess2btn.UseVisualStyleBackColor = false;
+            this.Guess2btn.Click += new System.EventHandler(this.Guess2btn_Click);
+            // 
+            // Guess3btn
+            // 
+            this.Guess3btn.BackColor = System.Drawing.Color.White;
+            this.Guess3btn.Location = new System.Drawing.Point(24, 235);
+            this.Guess3btn.Name = "Guess3btn";
+            this.Guess3btn.Size = new System.Drawing.Size(317, 23);
+            this.Guess3btn.TabIndex = 3;
+            this.Guess3btn.UseVisualStyleBackColor = false;
+            this.Guess3btn.Click += new System.EventHandler(this.Guess3btn_Click);
+            // 
             // ReviseTopics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(801, 456);
+            this.Controls.Add(this.FlashcardBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.LoggedIn);
             this.Controls.Add(this.BackBtn);
@@ -175,6 +241,7 @@
             this.Text = "Form2";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.FlashcardBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -192,5 +259,10 @@
         private System.Windows.Forms.Button HardDifficultyBtn;
         private System.Windows.Forms.Button MediumDifficultyBtn;
         private System.Windows.Forms.Button EasyDifficultyBtn;
+        private System.Windows.Forms.GroupBox FlashcardBox;
+        private System.Windows.Forms.Button Guess2btn;
+        private System.Windows.Forms.Button Guess1btn;
+        private System.Windows.Forms.Button Flashcardtermordefinition;
+        private System.Windows.Forms.Button Guess3btn;
     }
 }

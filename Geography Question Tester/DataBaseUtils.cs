@@ -23,11 +23,10 @@ namespace Geography_Question_Tester
                     CreateTopicTable();
                     AddStudent(1, "Admin", "", "123");
                     DataBaseUtils.AddFlashcard(1, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
-                    DataBaseUtils.AddFlashcard(2, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
-                    DataBaseUtils.AddFlashcard(3, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
-                    DataBaseUtils.AddFlashcard(4, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
-                    DataBaseUtils.AddFlashcard(5, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
-                    DataBaseUtils.AddFlashcard(6, "Volcano", "Large flume of lava", Topic.NaturalHazards, 1);
+                    DataBaseUtils.AddFlashcard(2, "Storm", "Large storm", Topic.NaturalHazards, 1);
+                    DataBaseUtils.AddFlashcard(3, "eqrthquake", "tectonic plates moving", Topic.NaturalHazards, 1);
+                    DataBaseUtils.AddFlashcard(4, "landslip", "the land slipping", Topic.NaturalHazards, 1);
+                    
                 }
             }
             catch (Exception ex)
@@ -49,7 +48,7 @@ namespace Geography_Question_Tester
                 + "Title VARCHAR(60),"
                 + "Answer VARCHAR(60),"
                 + "Topic VARCHAR(14),"
-                + "Difficulty VARCHAR(10),"
+                + "Difficulty DOUBLE,"
                 + "PRIMARY KEY(CardID)"
                 + ")";
             ExecuteSqlNonQuery(sSqlString);
@@ -157,12 +156,12 @@ namespace Geography_Question_Tester
             string sSqlString = "UPDATE Student SET " + attribute + " = '" + value.ToString() + "' WHERE StudentID =" + StudentId.ToString() + ";";
             ExecuteSqlNonQuery(sSqlString);
         }
-        public static Deck GetQuestions(int difficulty, Topic topic)
+        public static Deck GetQuestions(int difficulty, Topic topic, State state)
         {
             string topicstring = topic.ToString();
-            string sSqlString = "SELECT * FROM FlashCards WHERE Topic = '" + topicstring + "' AND Difficulty < " + difficulty.ToString() + ";";
+            string sSqlString = "SELECT * FROM FlashCards WHERE Topic = '" + topicstring + "' AND Difficulty <= " + difficulty.ToString() + " ;";
             DataTable sqldata = ExecuteSqlQuery(sSqlString);
-            Deck MyDeck = new Deck(10, MainMenu.CurrentStudent.ID);
+            Deck MyDeck = new Deck(10, MainMenu.CurrentStudent.ID, state);
             foreach(DataRow row in sqldata.Rows)
             {
                 int id = Convert.ToInt32(row["CardID"]);
@@ -179,7 +178,7 @@ namespace Geography_Question_Tester
                     }
                 }
                 int Difficulty = Convert.ToInt32(row["Difficulty"]);
-                Flashcard flashcard = new Flashcard(id, Keyword, Definition, _topic);
+                Flashcard flashcard = new Flashcard(id, Keyword, Definition, _topic,Difficulty);
                 MyDeck.AddQuestion(flashcard);
             }
             return MyDeck;
