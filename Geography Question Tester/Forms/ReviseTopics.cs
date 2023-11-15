@@ -9,7 +9,7 @@ namespace Geography_Question_Tester
         State state = State.Unassigned;
         int Difficulty;
         int currentquestion = 0;
-        int guess = 0;
+        int currentcorrectquestionbutton;
         public ReviseTopics()
         {
             InitializeComponent();
@@ -69,14 +69,14 @@ namespace Geography_Question_Tester
             Guess3btn.Show();
             if (CurrentDeck.state == State.Keyword)
             {
-                LearnKeyword(); //implement checking asnwer
+                currentcorrectquestionbutton = LearnKeyword(); //implement checking asnwer
             }
             if (CurrentDeck.state == State.Definition)
             {
-                LearnDefinition(); //implement checking answer
+                currentcorrectquestionbutton = LearnDefinition(); //implement checking answer
             }
         }
-        private void LearnKeyword()
+        private int LearnKeyword()
         {
             Random rnd = new Random();
             Flashcardtermordefinition.Text = CurrentDeck[currentquestion].Title;
@@ -113,8 +113,9 @@ namespace Geography_Question_Tester
                     Guess3btn.Text = "3: " + CurrentDeck[currentquestion].Answer;
                     break;
             }
+            return correctposition;
         }
-        private void LearnDefinition()
+        private int LearnDefinition()
         {
             Random rnd = new Random();
             Flashcardtermordefinition.Text = CurrentDeck[currentquestion].Answer;
@@ -151,22 +152,52 @@ namespace Geography_Question_Tester
                     Guess3btn.Text = "3: " + CurrentDeck[currentquestion].Title;
                     break;
             }
+            return correctposition;
         }
 
         
         private void Guess1btn_Click(object sender, EventArgs e)
         {
-            guess = 1;
+            if(currentcorrectquestionbutton == 1)
+            {
+                CorrectAnswer();
+            }
+            else
+            {
+                Incorrect();
+            }
         }
 
         private void Guess2btn_Click(object sender, EventArgs e)
         {
-            guess = 2;
+            if (currentcorrectquestionbutton == 2)
+            {
+                CorrectAnswer();
+            }
+            else
+            {
+                Incorrect();
+            }
         }
 
         private void Guess3btn_Click(object sender, EventArgs e)
         {
-            guess = 3;
+            if (currentcorrectquestionbutton == 3)
+            {
+                CorrectAnswer();
+            }
+            else
+            {
+                Incorrect();
+            }
+        }
+        private void CorrectAnswer()
+        {
+            Console.WriteLine("Correct");
+        }
+        private void Incorrect()
+        {
+            Console.WriteLine("Incorrect");
         }
     }
     
