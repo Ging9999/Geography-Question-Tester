@@ -61,7 +61,6 @@ namespace Geography_Question_Tester
             Topic wantedtopicvalue = (Topic)SelectTopicBox.SelectedIndex - 1;
             CurrentDeck = DataBaseUtils.GetQuestions(Difficulty, wantedtopicvalue, state);
             LearnDeck();
-
         }
         private void LearnDeck()
         {
@@ -70,86 +69,87 @@ namespace Geography_Question_Tester
             Guess3btn.Show();
             if (CurrentDeck.state == State.Keyword)
             {
-                for (int i = 0; i < CurrentDeck.length; i++)
-                {
-                    Random rnd = new Random();
-                    Flashcardtermordefinition.Text = CurrentDeck[i].Title;
-                    int correctposition = rnd.Next(1, 3);
-                    int tempfill;
-                    MyList<int> fillerpos;
-                    switch (correctposition)
-                    {
-                        case 1:
-                            fillerpos = new MyList<int>(CurrentDeck.length);
-                            for(int x =0; i < CurrentDeck.length; x++)
-                            {
-                                fillerpos.Add(i);
-                            }
-                            fillerpos.Remove(correctposition);
-                            Guess1btn.Text = "1: " + CurrentDeck[i].Answer;
-                            tempfill = rnd.Next(0, fillerpos.Count);
-                            Guess2btn.Text = "2: " + CurrentDeck[tempfill].Answer;
-                            fillerpos.Remove(tempfill);
-                            tempfill = rnd.Next(0, fillerpos.Count);
-                            Guess3btn.Text = "3: " + CurrentDeck[tempfill].Answer;
-                            break;
-                        case 2:
-                            fillerpos = new MyList<int>(CurrentDeck.length);
-                            for (int x = 0; i < CurrentDeck.length; x++)
-                            {
-                                fillerpos.Add(i);
-                            }
-                            fillerpos.Remove(correctposition);
-                            tempfill = rnd.Next(0, fillerpos.Count);
-                            Guess1btn.Text = "1: " + CurrentDeck[tempfill].Answer;
-                            fillerpos.Remove(tempfill);
-                            Guess2btn.Text = "2: " + CurrentDeck[i].Answer;
-                            tempfill = rnd.Next(0, fillerpos.Count);
-                            Guess2btn.Text = "3: " + CurrentDeck[tempfill];
-                            break;
-                        case 3:
-                            fillerpos = new MyList<int>(CurrentDeck.length);
-                            for (int x = 0; i < CurrentDeck.length; x++)
-                            {
-                                fillerpos.Add(i);
-                            }
-                            fillerpos.Remove(correctposition);
-                            tempfill = rnd.Next(0, fillerpos.Count);
-                            Guess1btn.Text = "1: " + CurrentDeck[tempfill].Answer;
-                            fillerpos.Remove(tempfill);
-                            tempfill = rnd.Next(0, fillerpos.Count);
-                            Guess2btn.Text = "2: " + CurrentDeck[tempfill].Answer;
-                            Guess3btn.Text = "3: " + CurrentDeck[i].Answer;
-                            break;
-                    }
-                }
+                LearnKeyword(); //implement checking asnwer
             }
             if (CurrentDeck.state == State.Definition)
             {
-                for (int i = 0; i < CurrentDeck.length; i++)
-                {
-                    Random rnd = new Random();
-                    Flashcardtermordefinition.Text = CurrentDeck[i].Title;
-                    int correctposition = rnd.Next(1, 3);
-                    switch (correctposition)
-                    {
-                        case 1:               
-                            Guess1btn.Text = "1: " + CurrentDeck[i].Answer;
-                            Guess2btn.Text = "2: " + CurrentDeck[rnd.Next(currentquestion+1, CurrentDeck.length)].Answer;
-                            Guess3btn.Text = "3: " + CurrentDeck[rnd.Next(currentquestion+1, CurrentDeck.length)].Answer;
-                            break;
-                        case 2:
-                            Guess1btn.Text = "1: " + CurrentDeck[rnd.Next(currentquestion+1, CurrentDeck.length)].Answer;
-                            Guess2btn.Text = "2: " + CurrentDeck[i].Answer;
-                            Guess2btn.Text = "3: " + CurrentDeck[rnd.Next(currentquestion+1, CurrentDeck.length)];
-                            break;
-                        case 3:
-                            Guess1btn.Text = "1: " + CurrentDeck[rnd.Next(currentquestion+1, CurrentDeck.length)].Answer;
-                            Guess2btn.Text = "2: " + CurrentDeck[rnd.Next(currentquestion+1, CurrentDeck.length)].Answer;
-                            Guess3btn.Text = "3: " + CurrentDeck[i].Answer;
-                            break;
-                    }
-                }
+                LearnDefinition(); //implement checking answer
+            }
+        }
+        private void LearnKeyword()
+        {
+            Random rnd = new Random();
+            Flashcardtermordefinition.Text = CurrentDeck[currentquestion].Title;
+            int correctposition = rnd.Next(1, 4);
+            int tempfill1 = -1;
+            int tempfill2 = -1;
+            while (tempfill1 == currentquestion || tempfill1 == -1)
+            {
+                tempfill1 = rnd.Next(0, CurrentDeck.length);
+            }
+
+            while (tempfill2 == currentquestion || tempfill2 == -1 || tempfill1 == tempfill2)
+            {
+                tempfill2 = rnd.Next(0, CurrentDeck.length);
+            }
+            switch (correctposition)
+            {
+                case 1:
+                    Guess1btn.Text = "1: " + CurrentDeck[currentquestion].Answer;
+                    Guess2btn.Text = "2: " + CurrentDeck[tempfill1].Answer;
+                    Guess3btn.Text = "3: " + CurrentDeck[tempfill2].Answer;
+                    Console.WriteLine(currentquestion + " " + CurrentDeck[currentquestion].Answer);
+                    Console.WriteLine(tempfill1 + " " + CurrentDeck[tempfill1].Answer);
+                    Console.WriteLine(tempfill2 + " " + CurrentDeck[tempfill2].Answer);
+                    break;
+                case 2:
+                    Guess1btn.Text = "1: " + CurrentDeck[tempfill1].Answer;
+                    Guess2btn.Text = "2: " + CurrentDeck[currentquestion].Answer;
+                    Guess3btn.Text = "3: " + CurrentDeck[tempfill2].Answer;
+                    break;
+                case 3:
+                    Guess1btn.Text = "1: " + CurrentDeck[tempfill1].Answer;
+                    Guess2btn.Text = "2: " + CurrentDeck[tempfill2].Answer;
+                    Guess3btn.Text = "3: " + CurrentDeck[currentquestion].Answer;
+                    break;
+            }
+        }
+        private void LearnDefinition()
+        {
+            Random rnd = new Random();
+            Flashcardtermordefinition.Text = CurrentDeck[currentquestion].Answer;
+            int correctposition = rnd.Next(1, 4);
+            int tempfill1 = -1;
+            int tempfill2 = -1;
+            while (tempfill1 == currentquestion || tempfill1 == -1)
+            {
+                tempfill1 = rnd.Next(0, CurrentDeck.length);
+            }
+
+            while (tempfill2 == currentquestion || tempfill2 == -1 || tempfill1 == tempfill2)
+            {
+                tempfill2 = rnd.Next(0, CurrentDeck.length);
+            }
+            switch (correctposition)
+            {
+                case 1:
+                    Guess1btn.Text = "1: " + CurrentDeck[currentquestion].Title;
+                    Guess2btn.Text = "2: " + CurrentDeck[tempfill1].Title;
+                    Guess3btn.Text = "3: " + CurrentDeck[tempfill2].Title;
+                    Console.WriteLine(currentquestion + " " + CurrentDeck[currentquestion].Title);
+                    Console.WriteLine(tempfill1 + " " + CurrentDeck[tempfill1].Title);
+                    Console.WriteLine(tempfill2 + " " + CurrentDeck[tempfill2].Title);
+                    break;
+                case 2:
+                    Guess1btn.Text = "1: " + CurrentDeck[tempfill1].Title;
+                    Guess2btn.Text = "2: " + CurrentDeck[currentquestion].Title;
+                    Guess3btn.Text = "3: " + CurrentDeck[tempfill2].Title;
+                    break;
+                case 3:
+                    Guess1btn.Text = "1: " + CurrentDeck[tempfill1].Title;
+                    Guess2btn.Text = "2: " + CurrentDeck[tempfill2].Title;
+                    Guess3btn.Text = "3: " + CurrentDeck[currentquestion].Title;
+                    break;
             }
         }
 

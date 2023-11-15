@@ -26,7 +26,13 @@ namespace Geography_Question_Tester
                     DataBaseUtils.AddFlashcard(2, "Storm", "Large storm", Topic.NaturalHazards, 1);
                     DataBaseUtils.AddFlashcard(3, "eqrthquake", "tectonic plates moving", Topic.NaturalHazards, 1);
                     DataBaseUtils.AddFlashcard(4, "landslip", "the land slipping", Topic.NaturalHazards, 1);
-                    
+                    DataBaseUtils.AddFlashcard(5, "liquification", "the ground turns into liquid", Topic.NaturalHazards, 1);
+                    DataBaseUtils.AddFlashcard(6, "Epicentre", "the epicentre of an earthquake", Topic.NaturalHazards, 1);
+                    DataBaseUtils.AddFlashcard(7, "focus", "the focus", Topic.NaturalHazards, 1);
+                    DataBaseUtils.AddFlashcard(8, "fatalism", "the idea to give in", Topic.NaturalHazards, 1);
+                    DataBaseUtils.AddFlashcard(9, "aid", "giving aid", Topic.NaturalHazards, 1);
+                    DataBaseUtils.AddFlashcard(10, "HIC", "Higher income country", Topic.NaturalHazards, 1);
+
                 }
             }
             catch (Exception ex)
