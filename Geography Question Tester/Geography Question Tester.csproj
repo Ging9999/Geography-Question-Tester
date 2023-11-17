@@ -113,6 +113,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\AddFlashard.resx">
+      <DependentUpon>AddFlashard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateAccountMenu.resx">
       <DependentUpon>CreateAccountMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReviseDecks.resx">
+      <DependentUpon>ReviseDecks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ReviseTopics.resx">
       <DependentUpon>ReviseTopics.cs</DependentUpon>

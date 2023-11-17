@@ -40,10 +40,13 @@
             this.SelectTopicLbl = new System.Windows.Forms.Label();
             this.SelectTopicBox = new System.Windows.Forms.ComboBox();
             this.FlashcardBox = new System.Windows.Forms.GroupBox();
-            this.Flashcardtermordefinition = new System.Windows.Forms.Button();
-            this.Guess1btn = new System.Windows.Forms.Button();
-            this.Guess2btn = new System.Windows.Forms.Button();
+            this.NextQuestionBtn = new System.Windows.Forms.Button();
+            this.incorrectcorrectlbl = new System.Windows.Forms.Label();
             this.Guess3btn = new System.Windows.Forms.Button();
+            this.Guess2btn = new System.Windows.Forms.Button();
+            this.Guess1btn = new System.Windows.Forms.Button();
+            this.Flashcardtermordefinition = new System.Windows.Forms.Button();
+            this.finishedlbl = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.FlashcardBox.SuspendLayout();
             this.SuspendLayout();
@@ -178,6 +181,8 @@
             // FlashcardBox
             // 
             this.FlashcardBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.FlashcardBox.Controls.Add(this.NextQuestionBtn);
+            this.FlashcardBox.Controls.Add(this.incorrectcorrectlbl);
             this.FlashcardBox.Controls.Add(this.Guess3btn);
             this.FlashcardBox.Controls.Add(this.Guess2btn);
             this.FlashcardBox.Controls.Add(this.Guess1btn);
@@ -189,34 +194,24 @@
             this.FlashcardBox.TabStop = false;
             this.FlashcardBox.Text = "Flashcards";
             // 
-            // Flashcardtermordefinition
+            // NextQuestionBtn
             // 
-            this.Flashcardtermordefinition.BackColor = System.Drawing.Color.White;
-            this.Flashcardtermordefinition.Location = new System.Drawing.Point(47, 42);
-            this.Flashcardtermordefinition.Name = "Flashcardtermordefinition";
-            this.Flashcardtermordefinition.Size = new System.Drawing.Size(274, 129);
-            this.Flashcardtermordefinition.TabIndex = 0;
-            this.Flashcardtermordefinition.UseVisualStyleBackColor = false;
+            this.NextQuestionBtn.Location = new System.Drawing.Point(244, 289);
+            this.NextQuestionBtn.Name = "NextQuestionBtn";
+            this.NextQuestionBtn.Size = new System.Drawing.Size(97, 54);
+            this.NextQuestionBtn.TabIndex = 5;
+            this.NextQuestionBtn.Text = "Next Question";
+            this.NextQuestionBtn.UseVisualStyleBackColor = true;
+            this.NextQuestionBtn.Click += new System.EventHandler(this.NextQuestionBtn_Click);
             // 
-            // Guess1btn
+            // incorrectcorrectlbl
             // 
-            this.Guess1btn.BackColor = System.Drawing.Color.White;
-            this.Guess1btn.Location = new System.Drawing.Point(24, 177);
-            this.Guess1btn.Name = "Guess1btn";
-            this.Guess1btn.Size = new System.Drawing.Size(317, 23);
-            this.Guess1btn.TabIndex = 1;
-            this.Guess1btn.UseVisualStyleBackColor = false;
-            this.Guess1btn.Click += new System.EventHandler(this.Guess1btn_Click);
-            // 
-            // Guess2btn
-            // 
-            this.Guess2btn.BackColor = System.Drawing.Color.White;
-            this.Guess2btn.Location = new System.Drawing.Point(24, 206);
-            this.Guess2btn.Name = "Guess2btn";
-            this.Guess2btn.Size = new System.Drawing.Size(317, 23);
-            this.Guess2btn.TabIndex = 2;
-            this.Guess2btn.UseVisualStyleBackColor = false;
-            this.Guess2btn.Click += new System.EventHandler(this.Guess2btn_Click);
+            this.incorrectcorrectlbl.AutoSize = true;
+            this.incorrectcorrectlbl.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.incorrectcorrectlbl.Location = new System.Drawing.Point(154, 289);
+            this.incorrectcorrectlbl.Name = "incorrectcorrectlbl";
+            this.incorrectcorrectlbl.Size = new System.Drawing.Size(0, 13);
+            this.incorrectcorrectlbl.TabIndex = 4;
             // 
             // Guess3btn
             // 
@@ -228,11 +223,48 @@
             this.Guess3btn.UseVisualStyleBackColor = false;
             this.Guess3btn.Click += new System.EventHandler(this.Guess3btn_Click);
             // 
+            // Guess2btn
+            // 
+            this.Guess2btn.BackColor = System.Drawing.Color.White;
+            this.Guess2btn.Location = new System.Drawing.Point(24, 206);
+            this.Guess2btn.Name = "Guess2btn";
+            this.Guess2btn.Size = new System.Drawing.Size(317, 23);
+            this.Guess2btn.TabIndex = 2;
+            this.Guess2btn.UseVisualStyleBackColor = false;
+            this.Guess2btn.Click += new System.EventHandler(this.Guess2btn_Click);
+            // 
+            // Guess1btn
+            // 
+            this.Guess1btn.BackColor = System.Drawing.Color.White;
+            this.Guess1btn.Location = new System.Drawing.Point(24, 177);
+            this.Guess1btn.Name = "Guess1btn";
+            this.Guess1btn.Size = new System.Drawing.Size(317, 23);
+            this.Guess1btn.TabIndex = 1;
+            this.Guess1btn.UseVisualStyleBackColor = false;
+            this.Guess1btn.Click += new System.EventHandler(this.Guess1btn_Click);
+            // 
+            // Flashcardtermordefinition
+            // 
+            this.Flashcardtermordefinition.BackColor = System.Drawing.Color.White;
+            this.Flashcardtermordefinition.Location = new System.Drawing.Point(47, 42);
+            this.Flashcardtermordefinition.Name = "Flashcardtermordefinition";
+            this.Flashcardtermordefinition.Size = new System.Drawing.Size(274, 129);
+            this.Flashcardtermordefinition.TabIndex = 0;
+            this.Flashcardtermordefinition.UseVisualStyleBackColor = false;
+            // 
+            // finishedlbl
+            // 
+            this.finishedlbl.Location = new System.Drawing.Point(309, 17);
+            this.finishedlbl.Name = "finishedlbl";
+            this.finishedlbl.Size = new System.Drawing.Size(92, 44);
+            this.finishedlbl.TabIndex = 4;
+            // 
             // ReviseTopics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(801, 456);
+            this.Controls.Add(this.finishedlbl);
             this.Controls.Add(this.FlashcardBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.LoggedIn);
@@ -242,6 +274,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.FlashcardBox.ResumeLayout(false);
+            this.FlashcardBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -264,5 +297,8 @@
         private System.Windows.Forms.Button Guess1btn;
         private System.Windows.Forms.Button Flashcardtermordefinition;
         private System.Windows.Forms.Button Guess3btn;
+        private System.Windows.Forms.Label incorrectcorrectlbl;
+        private System.Windows.Forms.Button NextQuestionBtn;
+        private System.Windows.Forms.Label finishedlbl;
     }
 }

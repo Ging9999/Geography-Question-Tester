@@ -19,7 +19,7 @@ namespace Geography_Question_Tester
     class Flashcard
     {
         public int ID { get; set; }
-        public int Difficulty { get; set; } 
+        public double Difficulty { get; set; } 
         public string Title { get; private set; }
         public string Answer { get; private set; }
         public Topic Topic { get; private set; }
@@ -32,7 +32,7 @@ namespace Geography_Question_Tester
             Topic = topic;
 
         }       
-        public Flashcard(int Id, string question, string answer, Topic topic, int difficulty)
+        public Flashcard(int Id, string question, string answer, Topic topic, double difficulty)
         {
             ID = Id;
             Title = question;

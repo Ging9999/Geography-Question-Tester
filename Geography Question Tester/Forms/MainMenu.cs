@@ -25,6 +25,7 @@ namespace Geography_Question_Tester
         private void BtnReviseDecks_Click(object sender, EventArgs e)
         {
             new ReviseDecks().Show();
+            LoginMenu.BackStack.Push(this);
             this.Hide();
         }
         private void BtnViewStats_Click(object sender, EventArgs e)
@@ -36,6 +37,7 @@ namespace Geography_Question_Tester
         private void BtnAddFlashCard_Click(object sender, EventArgs e)
         {
             new AddFlashard().Show();
+            LoginMenu.BackStack.Push(this);
             this.Hide();
         }
 

@@ -1,15 +1,19 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
+using System.Threading;
+using System.Runtime.CompilerServices;
 
 namespace Geography_Question_Tester
 {
     public partial class ReviseTopics : Form
     {
         Deck CurrentDeck = new Deck(10, MainMenu.CurrentStudent.ID);
-        State state = State.Unassigned;
+        string state;
         int Difficulty;
         int currentquestion = 0;
         int currentcorrectquestionbutton;
+        Double difficultymodifier;
         public ReviseTopics()
         {
             InitializeComponent();
@@ -17,6 +21,8 @@ namespace Geography_Question_Tester
             this.Guess1btn.Hide();
             this.Guess2btn.Hide();
             this.Guess3btn.Hide();
+            this.incorrectcorrectlbl.Hide();
+            this.NextQuestionBtn.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,12 +39,12 @@ namespace Geography_Question_Tester
 
         private void KeywordBtn_Click_1(object sender, EventArgs e)
         {
-            state = State.Keyword;
+            state = "Keyword";
         }
 
         private void LearnDefinitionBtn_Click(object sender, EventArgs e)
         {
-            state = State.Definition;
+            state = "Definition";
         }
 
         private void EasyDifficultyBtn_Click(object sender, EventArgs e)
@@ -59,7 +65,8 @@ namespace Geography_Question_Tester
         private void GetFlashcardsBtn_Click(object sender, EventArgs e)
         {
             Topic wantedtopicvalue = (Topic)SelectTopicBox.SelectedIndex - 1;
-            CurrentDeck = DataBaseUtils.GetQuestions(Difficulty, wantedtopicvalue, state);
+            CurrentDeck = DataBaseUtils.GetQuestions(Difficulty, wantedtopicvalue);
+            currentquestion = 0;
             LearnDeck();
         }
         private void LearnDeck()
@@ -67,11 +74,11 @@ namespace Geography_Question_Tester
             Guess1btn.Show();
             Guess2btn.Show();
             Guess3btn.Show();
-            if (CurrentDeck.state == State.Keyword)
+            if (state == "Keyword")
             {
                 currentcorrectquestionbutton = LearnKeyword(); //implement checking asnwer
             }
-            if (CurrentDeck.state == State.Definition)
+            if (state == "Definition")
             {
                 currentcorrectquestionbutton = LearnDefinition(); //implement checking answer
             }
@@ -118,6 +125,7 @@ namespace Geography_Question_Tester
         private int LearnDefinition()
         {
             Random rnd = new Random();
+            Flashcardtermordefinition.Show();
             Flashcardtermordefinition.Text = CurrentDeck[currentquestion].Answer;
             int correctposition = rnd.Next(1, 4);
             int tempfill1 = -1;
@@ -165,6 +173,7 @@ namespace Geography_Question_Tester
             else
             {
                 Incorrect();
+
             }
         }
 
@@ -193,11 +202,50 @@ namespace Geography_Question_Tester
         }
         private void CorrectAnswer()
         {
+            incorrectcorrectlbl.Show();
             Console.WriteLine("Correct");
+            if(difficultymodifier == 0)
+            {
+                difficultymodifier = difficultymodifier - 0.1;
+            }
+            incorrectcorrectlbl.ForeColor = Color.Green;
+            incorrectcorrectlbl.Text = "Correct";
+            DataBaseUtils.UpdateFlashcardDifficulty(CurrentDeck[currentquestion].ID, "Difficulty", CurrentDeck[currentquestion].Difficulty + difficultymodifier);
+            Console.WriteLine("Updated Attribute : Difficulty");
+            if(currentquestion < CurrentDeck.length - 1)
+            {
+                currentquestion++;
+                NextQuestionBtn.Show();
+            }
+            else
+            {
+                finishedlbl.AutoSize = false;
+                finishedlbl.ForeColor = Color.Green;
+                finishedlbl.Show();
+                finishedlbl.Text = "Finished Deck create new one";
+                Flashcardtermordefinition.Hide();
+                Guess1btn.Hide();
+                Guess2btn.Hide();
+                Guess3btn.Hide();
+                NextQuestionBtn.Hide();
+                incorrectcorrectlbl.Hide();
+            }
+            
         }
         private void Incorrect()
         {
+            incorrectcorrectlbl.Show();
             Console.WriteLine("Incorrect");
+            difficultymodifier = difficultymodifier - 0.2;
+            incorrectcorrectlbl.ForeColor = Color.Red;
+            incorrectcorrectlbl.Text = "Incorrect";
+        }
+
+        private void NextQuestionBtn_Click(object sender, EventArgs e)
+        {
+            LearnDeck();
+            NextQuestionBtn.Hide();
+            incorrectcorrectlbl.Hide();
         }
     }
     

@@ -152,9 +152,17 @@ namespace Geography_Question_Tester
             }
             return students[0];
         }
-        public static void UpdateFlashcard(int Id, string attribute, string value)
+        public static int GetNumberofcards()
         {
-            string sSqlString = "UPDATE Flashcards SET " + attribute + " = '" + value.ToString() + "' WHERE CardID =" + Id.ToString() + ";";
+            string sSqlsting = "SELECT * FROM FlashCards";
+            DataTable numberofcardstb = ExecuteSqlQuery(sSqlsting);
+            int numberofcards = numberofcardstb.Rows.Count;
+            return numberofcards;
+
+        }
+        public static void UpdateFlashcardDifficulty(int Id, string attribute, double value)
+        {
+            string sSqlString = "UPDATE Flashcards SET " + attribute + " = " + value + " WHERE CardID =" + Id.ToString() + ";";
             ExecuteSqlNonQuery(sSqlString);
         }
         public static void UpdateStudent(int StudentId, string attribute, string value)
@@ -162,12 +170,12 @@ namespace Geography_Question_Tester
             string sSqlString = "UPDATE Student SET " + attribute + " = '" + value.ToString() + "' WHERE StudentID =" + StudentId.ToString() + ";";
             ExecuteSqlNonQuery(sSqlString);
         }
-        public static Deck GetQuestions(int difficulty, Topic topic, State state)
+        public static Deck GetQuestions(int difficulty, Topic topic)
         {
             string topicstring = topic.ToString();
             string sSqlString = "SELECT * FROM FlashCards WHERE Topic = '" + topicstring + "' AND Difficulty <= " + difficulty.ToString() + " ;";
             DataTable sqldata = ExecuteSqlQuery(sSqlString);
-            Deck MyDeck = new Deck(10, MainMenu.CurrentStudent.ID, state);
+            Deck MyDeck = new Deck(10, MainMenu.CurrentStudent.ID);
             foreach(DataRow row in sqldata.Rows)
             {
                 int id = Convert.ToInt32(row["CardID"]);

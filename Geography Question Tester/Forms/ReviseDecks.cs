@@ -15,6 +15,13 @@ namespace Geography_Question_Tester.Forms
         public ReviseDecks()
         {
             InitializeComponent();
+            this.loggedinbtn.Text = MainMenu.CurrentStudent.Fname;
+        }
+
+        private void Backbtn_Click(object sender, EventArgs e)
+        {
+            LoginMenu.BackStack.Pop().Show();
+            this.Hide();
         }
     }
 }
