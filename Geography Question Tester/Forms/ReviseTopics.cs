@@ -66,6 +66,9 @@ namespace Geography_Question_Tester
         {
             Topic wantedtopicvalue = (Topic)SelectTopicBox.SelectedIndex - 1;
             CurrentDeck = DataBaseUtils.GetQuestions(Difficulty, wantedtopicvalue);
+            string DeckName = wantedtopicvalue.GetType().ToString();
+            CurrentDeck.deckname = DeckName + "Deck" ;
+            MainMenu.CurrentStudent.currentdecks.Add(CurrentDeck);
             currentquestion = 0;
             LearnDeck();
         }

@@ -35,7 +35,7 @@ namespace Geography_Question_Tester.Forms
             {
                 int id = DataBaseUtils.GetNumberofcards() + 1;
                 Topic wanted = (Topic)Topiccombobox.SelectedIndex;
-                DataBaseUtils.AddFlashcard(id, Keywordtxtbox.Text, Definitiontxtbox.Text, wanted, 2);
+                DataBaseUtils.AddFlashcard(id, Keywordtxtbox.Text, Definitiontxtbox.Text, wanted, 2.5);
                 Keywordtxtbox.Clear();
                 Definitiontxtbox.Clear();
                 Topiccombobox.SelectedIndex = -1;

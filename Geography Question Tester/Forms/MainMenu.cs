@@ -5,15 +5,15 @@ using System.Windows.Forms;
 
 namespace Geography_Question_Tester
 {
-    public partial class MainMenu : Form
+    partial class MainMenu : Form
     {
-        public static Student CurrentStudent { get;  private set; }
+        public static Student CurrentStudent;
         public MainMenu(Student currentstudent)
         {
             CurrentStudent = currentstudent;
             InitializeComponent();
             this.LoggedIn.Text = "Logged in as : " + CurrentStudent.Fname;
-            //load decks of student
+            DataBaseUtils.
         }
 
         private void BtnReviseTopics_Click(object sender, EventArgs e)
@@ -24,9 +24,16 @@ namespace Geography_Question_Tester
         }
         private void BtnReviseDecks_Click(object sender, EventArgs e)
         {
-            new ReviseDecks().Show();
-            LoginMenu.BackStack.Push(this);
-            this.Hide();
+            if(CurrentStudent.currentdecks.Count == 0)
+            {
+                MessageBox.Show("Please revise some topics before generating decks", "Revise Decks", MessageBoxButtons.OK);
+            }
+            else
+            {
+                new ReviseDecks().Show();
+                LoginMenu.BackStack.Push(this);
+                this.Hide();
+            }          
         }
         private void BtnViewStats_Click(object sender, EventArgs e)
         {
@@ -43,6 +50,7 @@ namespace Geography_Question_Tester
 
         private void LogoutBtn_Click(object sender, EventArgs e)
         {
+            DataBaseUtils.WriteDecks(CurrentStudent.currentdecks);
             this.Close();
             LoginMenu.BackStack.Pop().Show();
         }

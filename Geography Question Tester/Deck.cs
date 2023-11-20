@@ -11,22 +11,15 @@ namespace Geography_Question_Tester
     class Deck
     {
         public int size;
+        public string deckname { get; set; }
         public int ownerID { get;  private set; }
-
         public State state { get; private set; }
-        public Deck(int Size, int OwnerID, State state)
-        {
-            size = Size;
-            ownerID = OwnerID;
-            state = state;
-
-        }
         public Deck(int Size, int OwnerID)
         {
             size = Size;
             ownerID = OwnerID;
-
         }
+        
         private MyQueue<Flashcard> _questions = new MyQueue<Flashcard>(); // change to queue
         
         public int length { get { return _questions.Count; } }

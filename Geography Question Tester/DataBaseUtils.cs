@@ -97,7 +97,7 @@ namespace Geography_Question_Tester
             }
             return dt;
         }
-        public static void AddFlashcard(int cardID, string Title, string Answer, Topic Topic, int Difficulty)
+        public static void AddFlashcard(int cardID, string Title, string Answer, Topic Topic, double Difficulty)
         {
             string enumTopic = Topic.GetType().ToString();
             string sSqlString;
@@ -198,7 +198,7 @@ namespace Geography_Question_Tester
             return MyDeck;
 
         }
-        /*private MyList<Deck> LoadDecks()
+        public MyList<Deck> LoadDecks()
         {
             int[] ListOfOwners;
             MyList<int[]> ListOfcardID = new MyList<int[]>();
@@ -216,20 +216,20 @@ namespace Geography_Question_Tester
                 ListOfDecks.Add(currentdeck);
             }
             return ListOfDecks;
-        }*/
-        public static void WriteDecks(MyList<Deck> listofdecks)
+        }
+        public static void WriteDecks(MyList<Deck> studentscurrentdecks)
         {
             string fileName = "Decks.txt";
             try
             {
                 using (StreamWriter SW = new StreamWriter(fileName))
                 {
-                    for (int x = 0; x < listofdecks.Count; x++)
+                    for (int x = 0; x < studentscurrentdecks.Count; x++)
                     {
-                        SW.Write(listofdecks[x].ownerID + " ");
-                        for (int y = 0; y < listofdecks[x].length; y++)
+                        SW.Write(studentscurrentdecks[x].ownerID + " ");
+                        for (int y = 0; y < studentscurrentdecks[x].length; y++)
                         {
-                            SW.Write(listofdecks[x][y].ID + " ");
+                            SW.Write(studentscurrentdecks[x][y].ID + " ");
                         }
                         SW.WriteLine("");
                     }
@@ -245,7 +245,7 @@ namespace Geography_Question_Tester
             int id = (Fname.Length * Lname.Length) + Fname.Length + Lname.Length;
             return id;
         }
-        /*public static void GetDecksfromtxt(out int[] ListofIds, out int[]Listofowners)
+        public static void GetDecksfromtxt(out int[] ListofIds, out int[]Listofowners)
         {
             string line;
             MyList<int>[] idandowners = new MyList<int>[2];
@@ -278,7 +278,7 @@ namespace Geography_Question_Tester
                
             }
             idandowners[0] = listofdecks;
-        }*/
+        }
 
 
 
