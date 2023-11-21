@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace Geography_Question_Tester
@@ -41,11 +42,7 @@ namespace Geography_Question_Tester
             }
 
         }
-        public static void LoadData()
-        {
-            //DataBaseUtils.L
-            //DataBaseUtils.GetDecksfromtxt();
-        }
+        
         private static void CreateTopicTable()
         {
             string sSqlString;
@@ -198,7 +195,7 @@ namespace Geography_Question_Tester
             return MyDeck;
 
         }
-        public MyList<Deck> LoadDecks()
+        /*public MyList<Deck> LoadDecks()
         {
             int[] ListOfOwners;
             MyList<int[]> ListOfcardID = new MyList<int[]>();
@@ -216,7 +213,7 @@ namespace Geography_Question_Tester
                 ListOfDecks.Add(currentdeck);
             }
             return ListOfDecks;
-        }
+        }*/
         public static void WriteDecks(MyList<Deck> studentscurrentdecks)
         {
             string fileName = "Decks.txt";
@@ -245,7 +242,7 @@ namespace Geography_Question_Tester
             int id = (Fname.Length * Lname.Length) + Fname.Length + Lname.Length;
             return id;
         }
-        public static void GetDecksfromtxt(out int[] ListofIds, out int[]Listofowners)
+        /*public static void GetDecksfromtxt(out int[] ListofIds, out int[]Listofowners)
         {
             string line;
             MyList<int>[] idandowners = new MyList<int>[2];
@@ -278,11 +275,37 @@ namespace Geography_Question_Tester
                
             }
             idandowners[0] = listofdecks;
+        }*/
+
+        public static MyList<Deck> loaddecks(int studentid)
+        {
+            string filename = "Decks.txt";
+            MyList<Deck> listofcurrentdecks = new MyList<Deck>();
+            string[] lines = File.ReadAllLines(filename);
+            Loadingpage temp = new Loadingpage();
+            temp.Show();
+            foreach (string line in lines)
+            {
+                char assumedid = Convert.ToChar(line[0]);
+                int currentline = int.Parse(assumedid.ToString());
+                if(currentline == studentid)
+                {
+                    Deck currentdeck = new Deck(10, studentid);
+                    string[] splitstring = line.Split(' ');
+                    for(int i = 1; i < splitstring.Length - 1; i++)
+                    {
+                        Console.WriteLine(splitstring[i]);
+                        Flashcard currentflashcard = DataBaseUtils.GetFlashcard(Convert.ToInt32(splitstring[i]));
+                        Console.WriteLine(currentflashcard.Answer);
+                        currentdeck.AddQuestion(currentflashcard);
+                        Loadingpage.increaseprogressbar(1);
+                    }
+                    listofcurrentdecks.Add(currentdeck);
+                }
+            }
+            temp.Hide();
+            return listofcurrentdecks;
         }
-
-
-
-
     }
 
 

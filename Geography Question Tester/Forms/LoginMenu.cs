@@ -27,9 +27,13 @@ namespace Geography_Question_Tester
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 Student CurrentStudent = DataBaseUtils.GetStudent(int.Parse(PasswordTxtBox.Text));
+                new MainMenu(CurrentStudent).Show();
+                Hide();
+                LoginMenu.BackStack.Push(this);
                 if (CurrentStudent.Fname.Trim() + " " + CurrentStudent.Lname.Trim() != UsernameTxtBox.Text)
                 {
                     MessageBox.Show("Inccorect Username", "error", MessageBoxButtons.OK);
@@ -41,10 +45,12 @@ namespace Geography_Question_Tester
                    LoginMenu.BackStack.Push(this);
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 MessageBox.Show("Incorrect Username or password", "error", MessageBoxButtons.OK);
+                Console.WriteLine(ex);
             }
+            
         }
         
 

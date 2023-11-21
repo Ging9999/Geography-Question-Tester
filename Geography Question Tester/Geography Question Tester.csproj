@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Loadingpage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Loadingpage.Designer.cs">
+      <DependentUpon>Loadingpage.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyStack.cs" />
     <Compile Include="DataBaseUtils.cs" />
     <Compile Include="Forms\CreateAccountMenu.cs">
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ReviseTopics.resx">
       <DependentUpon>ReviseTopics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Loadingpage.resx">
+      <DependentUpon>Loadingpage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

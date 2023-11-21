@@ -34,6 +34,7 @@ namespace Geography_Question_Tester
             MessageBox.Show("Your ID is : " + DataBaseUtils.CreateIDs(FirstNameBox.Text, LastNameBox.Text), "ID", MessageBoxButtons.OK);
             this.Hide();
             LoginMenu.BackStack.Pop().Show();
+            //check for length issues
         }
     }
 }
