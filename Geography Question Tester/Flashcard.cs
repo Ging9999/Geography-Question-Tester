@@ -16,7 +16,7 @@ namespace Geography_Question_Tester
     }
 
    
-    class Flashcard
+    public partial class Flashcard
     {
         public int ID { get; set; }
         public double Difficulty { get; set; } 

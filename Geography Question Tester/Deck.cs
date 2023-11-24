@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace Geography_Question_Tester
 {
-    class Deck
+    public partial class Deck
     {
         public int size;
         public string deckname { get; set; }
         public int ownerID { get;  private set; }
-        public State state { get; private set; }
         public Deck(int Size, int OwnerID)
         {
             size = Size;

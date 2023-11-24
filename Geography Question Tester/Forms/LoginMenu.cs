@@ -30,9 +30,7 @@ namespace Geography_Question_Tester
             
             try
             {
-                Student CurrentStudent = DataBaseUtils.GetStudent(int.Parse(PasswordTxtBox.Text));
-                new MainMenu(CurrentStudent).Show();
-                Hide();
+                Student CurrentStudent = DataBaseUtils.GetStudent(int.Parse(PasswordTxtBox.Text));              
                 LoginMenu.BackStack.Push(this);
                 if (CurrentStudent.Fname.Trim() + " " + CurrentStudent.Lname.Trim() != UsernameTxtBox.Text)
                 {

@@ -13,10 +13,11 @@ namespace Geography_Question_Tester
             CurrentStudent = currentstudent;
             InitializeComponent();
             this.LoggedIn.Text = "Logged in as : " + CurrentStudent.Fname;
-            CurrentStudent.currentdecks = DataBaseUtils.loaddecks(currentstudent.ID);
-            //Console.WriteLine(CurrentStudent.currentdecks[0][0].Answer);
-        }
-
+            if (CurrentStudent.currentdecks.Count == 0)
+            {
+                CurrentStudent.currentdecks = DataBaseUtils.loaddecks(currentstudent.ID);
+            }
+        }     
         private void BtnReviseTopics_Click(object sender, EventArgs e)
         {
             new ReviseTopics().Show();

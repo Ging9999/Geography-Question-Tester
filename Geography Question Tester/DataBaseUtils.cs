@@ -281,9 +281,7 @@ namespace Geography_Question_Tester
         {
             string filename = "Decks.txt";
             MyList<Deck> listofcurrentdecks = new MyList<Deck>();
-            string[] lines = File.ReadAllLines(filename);
-            Loadingpage temp = new Loadingpage();
-            temp.Show();
+            string[] lines = File.ReadAllLines(filename);         
             foreach (string line in lines)
             {
                 char assumedid = Convert.ToChar(line[0]);
@@ -297,13 +295,11 @@ namespace Geography_Question_Tester
                         Console.WriteLine(splitstring[i]);
                         Flashcard currentflashcard = DataBaseUtils.GetFlashcard(Convert.ToInt32(splitstring[i]));
                         Console.WriteLine(currentflashcard.Answer);
-                        currentdeck.AddQuestion(currentflashcard);
-                        Loadingpage.increaseprogressbar(1);
+                        currentdeck.AddQuestion(currentflashcard);                        
                     }
                     listofcurrentdecks.Add(currentdeck);
                 }
             }
-            temp.Hide();
             return listofcurrentdecks;
         }
     }
