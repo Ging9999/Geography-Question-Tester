@@ -27,7 +27,8 @@ namespace Geography_Question_Tester
             for(int x = 0; x < 10; x++)
             {
                 Random rnd = new Random();
-                Flashcard flashcard = DataBaseUtils.GetFlashcard(rnd.Next(dt.Columns.Count));
+                int temp = rnd.Next(1, dt.Rows.Count + 1);
+                Flashcard flashcard = DataBaseUtils.GetFlashcard(temp);
                 easymediumhard[0].AddQuestion(flashcard);
             }
         }
@@ -36,7 +37,7 @@ namespace Geography_Question_Tester
             try
             {
                 easymediumhard[3 + shift].AddQuestion(flashcard);
-                DataBaseUtils.UpdateFlashcardDifficulty(flashcard.ID, "Difficulty", flashcard.ID - 0.1);
+                DataBaseUtils.UpdateFlashcardDifficulty(flashcard.ID, "Difficulty", flashcard.ID - 0.1);             
             }
             catch
             {
@@ -79,17 +80,7 @@ namespace Geography_Question_Tester
                 DataBaseUtils.UpdateFlashcardDifficulty(flashcard.ID, "Difficulty", flashcard.ID + 0.2);
             }
         }
-        private void finished()
-        {
-            for(int i =0; i < easymediumhard.Count; i++)
-            {
-                if (easymediumhard[i].length == 10)
-                {
-                    MainMenu.CurrentStudent.currentdecks.Add(easymediumhard[i]);
-                }
-            }
-        }
-        
+       
         // create an alorithm in which creates decks based of how you awnser them, how many times its been done. sm-2
         // create a stats viewer to show the current stats of a person - compare against people standard deviation etc
 

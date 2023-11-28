@@ -37,16 +37,7 @@ namespace Geography_Question_Tester
         }
 
 
-        private void KeywordBtn_Click_1(object sender, EventArgs e)
-        {
-            state = "Keyword";
-        }
-
-        private void LearnDefinitionBtn_Click(object sender, EventArgs e)
-        {
-            state = "Definition";
-        }
-
+      
         private void EasyDifficultyBtn_Click(object sender, EventArgs e)
         {
             Difficulty = 1;

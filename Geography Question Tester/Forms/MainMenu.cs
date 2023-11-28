@@ -40,6 +40,7 @@ namespace Geography_Question_Tester
         private void BtnViewStats_Click(object sender, EventArgs e)
         {
             new ViewStats().Show();
+            LoginMenu.BackStack.Push(this);
             this.Hide();
         }
 

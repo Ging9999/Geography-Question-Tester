@@ -15,6 +15,23 @@ namespace Geography_Question_Tester.Forms
         public ViewStats()
         {
             InitializeComponent();
+            Loggedinas.Text = "Logged in as : " + MainMenu.CurrentStudent.Fname;
+            StudentStatsBox.Text = MainMenu.CurrentStudent.Fname + " Statistics";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LoginMenu.BackStack.Pop().Show();
+            this.Hide();
+        }
+
+        private void LoadStats()
+        {
+
+        }
+        public void GetAverage()
+        {
+            string sSqlstring = "SELECT * FROM FlashCards"
         }
     }
 }

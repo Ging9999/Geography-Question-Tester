@@ -1,31 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Geography_Question_Tester.Forms
 {
     public partial class ReviseDecks : Form
     {
-        private DeckGenerator DeckGenerator = new DeckGenerator();
         private int currentcard = 0;
         private int currentdeck = 0;
-        private string _choice = "";
+
         public ReviseDecks()
         {
             InitializeComponent();
             this.loggedinbtn.Text = MainMenu.CurrentStudent.Fname;
-            for(int i = 0; i < MainMenu.CurrentStudent.currentdecks.Count; i++)
+            for (int i = 0; i < MainMenu.CurrentStudent.currentdecks.Count; i++)
             {
                 DeckComboBox.Items.Add(MainMenu.CurrentStudent.currentdecks[i].ownerID);
             }
-            
-            
+            hideguess();
         }
 
         private void Backbtn_Click(object sender, EventArgs e)
@@ -33,38 +24,95 @@ namespace Geography_Question_Tester.Forms
             LoginMenu.BackStack.Pop().Show();
             this.Hide();
         }
-        private void start()
+        private void hideguess()
         {
-            
+            EasyBtn.Hide();
+            MediumBtn.Hide();
+            HardBtn.Hide();
+        }
+        private void showguess()
+        {
+            EasyBtn.Show();
+            MediumBtn.Show();
+            HardBtn.Show();
         }
 
         private void EasyBtn_Click(object sender, EventArgs e)
         {
-            DeckGenerator.easy(MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard]);
+            DataBaseUtils.UpdateFlashcardDifficulty(MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard].ID, "Difficulty", MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard].Difficulty - 0.1);
+            MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard].Difficulty = MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard].Difficulty - 0.1;
+            currentcard++;
+            if (currentcard > 9)
+            {
+                currentcard = 0;
+                endofdeck();
+            }
+            else
+            {
+                showcard();
+                hideguess();
+            }
+            
         }
-
         private void MediumBtn_Click(object sender, EventArgs e)
         {
-            DeckGenerator.medium(MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard]);
+            DataBaseUtils.UpdateFlashcardDifficulty(MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard].ID, "Difficulty", MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard].Difficulty + 0.1);
+            MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard].Difficulty = MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard].Difficulty + 0.1;
+            currentcard++;
+            if (currentcard > 9)
+            {
+                currentcard = 0;
+                endofdeck();
+            }
+            else
+            {
+                showcard();
+                hideguess();
+            }          
         }
 
         private void HardBtn_Click(object sender, EventArgs e)
         {
-            DeckGenerator.hard(MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard]);
+            DataBaseUtils.UpdateFlashcardDifficulty(MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard].ID, "Difficulty", MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard].Difficulty + 0.2);
+            MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard].Difficulty = MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard].Difficulty + 0.1;
+            currentcard++;
+            if (currentcard > 9)
+            {
+                currentcard = 0;
+                endofdeck();
+                
+            }
+            else
+            {
+                showcard();
+                hideguess();
+            }       
+        }
+        private void LoadDeck_Click(object sender, EventArgs e)
+        {
+            currentdeck = DeckComboBox.SelectedIndex;
+            showcard();
+        }
+        private void endofdeck()
+        {
+            hideguess();
+            DeckComboBox.Items.RemoveAt(DeckComboBox.SelectedIndex);
+            Flashcardterm.Enabled = false;
+            Flashcardterm.Text = "Please pick another deck";
         }
 
-        private void DefinitionBtn_Click(object sender, EventArgs e)
+        private void showcard()
         {
-            _choice = "Definition";
+            Flashcardterm.Enabled = true;
+            Flashcardterm.Text = MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard].Title;
         }
 
-        private void Keywordtbn_Click(object sender, EventArgs e)
+        private void Flashcardterm_Click(object sender, EventArgs e)
         {
-            _choice = "Keyword";
+            Flashcardterm.Text = MainMenu.CurrentStudent.currentdecks[currentdeck][currentcard].Answer;
+            Flashcardterm.Enabled = false;
+            showguess();
         }
-        private void run()
-        {
-
-        }
+        //when it gets to the end of the deck it breaks;
     }
 }
