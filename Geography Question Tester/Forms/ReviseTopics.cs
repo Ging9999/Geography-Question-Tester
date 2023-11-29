@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Threading;
-using System.Runtime.CompilerServices;
 
 namespace Geography_Question_Tester
 {
@@ -37,7 +35,7 @@ namespace Geography_Question_Tester
         }
 
 
-      
+
         private void EasyDifficultyBtn_Click(object sender, EventArgs e)
         {
             Difficulty = 1;
@@ -58,7 +56,7 @@ namespace Geography_Question_Tester
             Topic wantedtopicvalue = (Topic)SelectTopicBox.SelectedIndex - 1;
             CurrentDeck = DataBaseUtils.GetQuestions(Difficulty, wantedtopicvalue);
             string DeckName = wantedtopicvalue.GetType().ToString();
-            CurrentDeck.deckname = DeckName + "Deck" ;
+            CurrentDeck.deckname = DeckName + "Deck";
             MainMenu.CurrentStudent.currentdecks.Add(CurrentDeck);
             currentquestion = 0;
             LearnDeck();
@@ -139,9 +137,6 @@ namespace Geography_Question_Tester
                     Guess1btn.Text = "1: " + CurrentDeck[currentquestion].Title;
                     Guess2btn.Text = "2: " + CurrentDeck[tempfill1].Title;
                     Guess3btn.Text = "3: " + CurrentDeck[tempfill2].Title;
-                    Console.WriteLine(currentquestion + " " + CurrentDeck[currentquestion].Title);
-                    Console.WriteLine(tempfill1 + " " + CurrentDeck[tempfill1].Title);
-                    Console.WriteLine(tempfill2 + " " + CurrentDeck[tempfill2].Title);
                     break;
                 case 2:
                     Guess1btn.Text = "1: " + CurrentDeck[tempfill1].Title;
@@ -157,16 +152,17 @@ namespace Geography_Question_Tester
             return correctposition;
         }
 
-        
+
         private void Guess1btn_Click(object sender, EventArgs e)
         {
-            if(currentcorrectquestionbutton == 1)
+            if (currentcorrectquestionbutton == 1)
             {
                 CorrectAnswer();
             }
             else
             {
                 Incorrect();
+                Console.WriteLine(Guess1btn.Text);
 
             }
         }
@@ -180,6 +176,7 @@ namespace Geography_Question_Tester
             else
             {
                 Incorrect();
+                Console.WriteLine(Guess2btn.Text);
             }
         }
 
@@ -192,13 +189,14 @@ namespace Geography_Question_Tester
             else
             {
                 Incorrect();
+                Console.WriteLine(Guess3btn.Text);
             }
         }
         private void CorrectAnswer()
         {
             incorrectcorrectlbl.Show();
             Console.WriteLine("Correct");
-            if(difficultymodifier == 0)
+            if (difficultymodifier == 0)
             {
                 difficultymodifier = difficultymodifier - 0.1;
             }
@@ -206,7 +204,7 @@ namespace Geography_Question_Tester
             incorrectcorrectlbl.Text = "Correct";
             DataBaseUtils.UpdateFlashcardDifficulty(CurrentDeck[currentquestion].ID, "Difficulty", CurrentDeck[currentquestion].Difficulty + difficultymodifier);
             Console.WriteLine("Updated Attribute : Difficulty");
-            if(currentquestion < CurrentDeck.length - 1)
+            if (currentquestion < CurrentDeck.length - 1)
             {
                 currentquestion++;
                 NextQuestionBtn.Show();
@@ -224,7 +222,7 @@ namespace Geography_Question_Tester
                 NextQuestionBtn.Hide();
                 incorrectcorrectlbl.Hide();
             }
-            
+
         }
         private void Incorrect()
         {
@@ -241,7 +239,17 @@ namespace Geography_Question_Tester
             NextQuestionBtn.Hide();
             incorrectcorrectlbl.Hide();
         }
+
+        private void KeywordBtn_Click(object sender, EventArgs e)
+        {
+            state = "Keyword";
+        }
+
+        private void LearnDefinitionBtn_Click(object sender, EventArgs e)
+        {
+            state = "Definition";
+        }
     }
-    
+
 }
 

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace Geography_Question_Tester.Forms
             InitializeComponent();
             Loggedinas.Text = "Logged in as : " + MainMenu.CurrentStudent.Fname;
             StudentStatsBox.Text = MainMenu.CurrentStudent.Fname + " Statistics";
+            LoadStats();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -27,11 +29,21 @@ namespace Geography_Question_Tester.Forms
 
         private void LoadStats()
         {
-
+            double test = GetAverage();
+            Console.WriteLine(test);
         }
-        public void GetAverage()
+        public double GetAverage()
         {
-            string sSqlstring = "SELECT * FROM FlashCards"
+            double sumofdiffculty = 0;
+            string sSqlstring = "SELECT * FROM FlashCards";
+            DataTable dt = DataBaseUtils.ExecuteSqlQuery(sSqlstring);
+            foreach (DataRow row in dt.Rows)
+            {
+                string snum = row["Difficulty"].ToString();
+                sumofdiffculty += Convert.ToDouble(snum);
+            }
+            return sumofdiffculty / dt.Rows.Count;
+
         }
     }
 }

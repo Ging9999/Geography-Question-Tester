@@ -142,7 +142,8 @@
             this.LearnDefinitionBtn.Size = new System.Drawing.Size(89, 41);
             this.LearnDefinitionBtn.TabIndex = 3;
             this.LearnDefinitionBtn.Text = "Learn Definition";
-            this.LearnDefinitionBtn.UseVisualStyleBackColor = false;           
+            this.LearnDefinitionBtn.UseVisualStyleBackColor = false;
+            this.LearnDefinitionBtn.Click += new System.EventHandler(this.LearnDefinitionBtn_Click);
             // 
             // KeywordBtn
             // 
@@ -153,7 +154,7 @@
             this.KeywordBtn.TabIndex = 2;
             this.KeywordBtn.Text = "Learn Keyword";
             this.KeywordBtn.UseVisualStyleBackColor = false;
-            
+            this.KeywordBtn.Click += new System.EventHandler(this.KeywordBtn_Click);
             // 
             // SelectTopicLbl
             // 
