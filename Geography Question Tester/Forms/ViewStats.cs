@@ -30,7 +30,10 @@ namespace Geography_Question_Tester.Forms
         private void LoadStats()
         {
             double test = GetAverage();
+            double test2 = GetTopic("NaturalHazards");
             Console.WriteLine(test);
+            Console.WriteLine(test2);
+
         }
         public double GetAverage()
         {
@@ -43,7 +46,18 @@ namespace Geography_Question_Tester.Forms
                 sumofdiffculty += Convert.ToDouble(snum);
             }
             return sumofdiffculty / dt.Rows.Count;
-
+        }
+        public double GetTopic(string topic)
+        {
+            double sumofdifficulty = 0;
+            string sSqlstring = "SELECT * FROM FlashCards WHERE Topic = '" + topic + "'";
+            DataTable dt = DataBaseUtils.ExecuteSqlQuery(sSqlstring);
+            foreach (DataRow row in dt.Rows)
+            {
+                string snum = row["Difficulty"].ToString();
+                sumofdifficulty += Convert.ToDouble(snum);
+            }
+            return sumofdifficulty / dt.Rows.Count;
         }
     }
 }
