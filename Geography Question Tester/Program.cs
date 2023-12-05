@@ -22,6 +22,9 @@ namespace Geography_Question_Tester
         {
             DataBaseUtils.CreateDB();
             Application.Run(new LoginMenu());
+            
+            
+            
 
         }
         

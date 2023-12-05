@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Geography_Question_Tester
 {
-    public class MyStack<T>
+    public class MyStack<T> 
     {
         private MyList<T> stack = new MyList<T>(20);
         int bp = 0;

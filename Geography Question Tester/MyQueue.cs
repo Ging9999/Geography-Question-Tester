@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Geography_Question_Tester
 {
     class MyQueue<T> : MyList<T>
-    {  
+    {
         public T Pop()
         {
             T Value = _items[0];

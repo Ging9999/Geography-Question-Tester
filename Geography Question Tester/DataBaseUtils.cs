@@ -195,25 +195,7 @@ namespace Geography_Question_Tester
             return MyDeck;
 
         }
-        /*public MyList<Deck> LoadDecks()
-        {
-            int[] ListOfOwners;
-            MyList<int[]> ListOfcardID = new MyList<int[]>();
-            GetDecksfromtxt(out ListOfcardID, out ListOfOwners);
-
-            MyList<Deck> ListOfDecks = new MyList<Deck>(ListOfcardID.Count);
-            for (int y = 0; y < ListOfDecks.Count; y++)
-            {
-                Deck currentdeck = new Deck(ListOfcardID[y].Length, ListOfOwners[y]);
-                for (int x = 0; x < ListOfcardID[y].Length; x++)
-                {
-                    Flashcard currentflashcard = GetFlashcard(ListOfcardID[y][x]);
-                    currentdeck.AddQuestion(currentflashcard);
-                }
-                ListOfDecks.Add(currentdeck);
-            }
-            return ListOfDecks;
-        }*/
+        
         public static void WriteDecks(MyList<Deck> studentscurrentdecks)
         {
             string fileName = "Decks.txt";
@@ -242,40 +224,7 @@ namespace Geography_Question_Tester
             int id = (Fname.Length * Lname.Length) + Fname.Length + Lname.Length;
             return id;
         }
-        /*public static void GetDecksfromtxt(out int[] ListofIds, out int[]Listofowners)
-        {
-            string line;
-            MyList<int>[] idandowners = new MyList<int>[2];
-            MyList<int[]> listofdecks = new MyList<int[]>();
-            MyList<int> owners = new MyList<int>();
-            string fileName = "Decks.txt";
-            try
-            {
-                using (StreamReader SR = new StreamReader(fileName))
-                {
-                    line = SR.ReadLine();
-                    while(line != null)
-                    {
-                        owners.Add(line[0]);
-                        MyList<int> templistid = new MyList<int>();
-                        for(int i = 2; i < line.Length; i += 2)
-                        {
-                            if (line[i] == ' ')
-                            {
-                                break;
-                            }
-                            templistid.Add(line[i]);
-                        }
-                        listofdecks.Add(templistid.ToArray());
-                    }
-                }
-            }
-            catch
-            {
-               
-            }
-            idandowners[0] = listofdecks;
-        }*/
+        
 
         public static MyList<Deck> loaddecks(int studentid)
         {
