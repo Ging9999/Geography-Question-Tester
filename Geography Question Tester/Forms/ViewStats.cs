@@ -29,10 +29,11 @@ namespace Geography_Question_Tester.Forms
 
         private void LoadStats()
         {
-            double test = GetAverage();
-            double test2 = GetTopic("NaturalHazards");
-            Console.WriteLine(test);
-            Console.WriteLine(test2);
+            FCAverage.Text = Convert.ToString(GetAverage());
+            HazardDifficultyBtn.Text = Convert.ToString(GetTopic("NaturalHazards"));
+            AvrChangingPlacesBtn.Text = Convert.ToString(GetTopic("ChangingPlaces"));
+            AvrHotDesertsBtn.Text = Convert.ToString(GetTopic("HotDeserts"));
+            AvrWaterCardBtn.Text = Convert.ToString(GetTopic("WaterCarbon"));
 
         }
         public double GetAverage()
@@ -59,5 +60,7 @@ namespace Geography_Question_Tester.Forms
             }
             return sumofdifficulty / dt.Rows.Count;
         }
+
+        
     }
 }

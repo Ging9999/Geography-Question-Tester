@@ -80,9 +80,7 @@ namespace Geography_Question_Tester
                 DataBaseUtils.UpdateFlashcardDifficulty(flashcard.ID, "Difficulty", flashcard.ID + 0.2);
             }
         }
-       
-        // create an alorithm in which creates decks based of how you awnser them, how many times its been done. sm-2
-        // create a stats viewer to show the current stats of a person - compare against people standard deviation etc
+      
 
     }
 }
