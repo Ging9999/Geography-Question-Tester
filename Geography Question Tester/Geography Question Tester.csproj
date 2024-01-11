@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\CreateDeck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateDeck.Designer.cs">
+      <DependentUpon>CreateDeck.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyStack.cs" />
     <Compile Include="DataBaseUtils.cs" />
     <Compile Include="Forms\CreateAccountMenu.cs">
@@ -118,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateAccountMenu.resx">
       <DependentUpon>CreateAccountMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateDeck.resx">
+      <DependentUpon>CreateDeck.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginMenu.resx">
       <DependentUpon>LoginMenu.cs</DependentUpon>

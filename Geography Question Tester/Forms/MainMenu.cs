@@ -57,5 +57,12 @@ namespace Geography_Question_Tester
             this.Close();
             LoginMenu.BackStack.Pop().Show();
         }
+
+        private void CreateDecksBtn_Click(object sender, EventArgs e)
+        {
+            new CreateDeck().Show();
+            this.Close();
+            LoginMenu.BackStack.Push(this);
+        }
     }
 }

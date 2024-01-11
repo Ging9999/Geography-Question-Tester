@@ -158,6 +158,8 @@ namespace Geography_Question_Tester
             if (currentcorrectquestionbutton == 1)
             {
                 CorrectAnswer();
+                Guess2btn.Enabled = false;
+                Guess3btn.Enabled = false;
             }
             else
             {
@@ -172,6 +174,8 @@ namespace Geography_Question_Tester
             if (currentcorrectquestionbutton == 2)
             {
                 CorrectAnswer();
+                Guess1btn.Enabled = false;
+                Guess3btn.Enabled = false;
             }
             else
             {
@@ -185,6 +189,8 @@ namespace Geography_Question_Tester
             if (currentcorrectquestionbutton == 3)
             {
                 CorrectAnswer();
+                Guess1btn.Enabled = false;
+                Guess2btn.Enabled = false;
             }
             else
             {

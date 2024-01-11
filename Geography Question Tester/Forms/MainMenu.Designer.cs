@@ -35,6 +35,7 @@
             this.LogoutBtn = new System.Windows.Forms.Button();
             this.LoggedInAs = new System.Windows.Forms.Label();
             this.LoggedIn = new System.Windows.Forms.Button();
+            this.CreateDecksBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnReviseTopics
@@ -106,11 +107,22 @@
             this.LoggedIn.TabIndex = 6;
             this.LoggedIn.UseVisualStyleBackColor = false;
             // 
+            // CreateDecksBtn
+            // 
+            this.CreateDecksBtn.Location = new System.Drawing.Point(322, 313);
+            this.CreateDecksBtn.Name = "CreateDecksBtn";
+            this.CreateDecksBtn.Size = new System.Drawing.Size(142, 29);
+            this.CreateDecksBtn.TabIndex = 7;
+            this.CreateDecksBtn.Text = "Create Decks";
+            this.CreateDecksBtn.UseVisualStyleBackColor = true;
+            this.CreateDecksBtn.Click += new System.EventHandler(this.CreateDecksBtn_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.CreateDecksBtn);
             this.Controls.Add(this.LoggedIn);
             this.Controls.Add(this.LoggedInAs);
             this.Controls.Add(this.LogoutBtn);
@@ -134,5 +146,6 @@
         private System.Windows.Forms.Button LogoutBtn;
         private System.Windows.Forms.Label LoggedInAs;
         private System.Windows.Forms.Button LoggedIn;
+        private System.Windows.Forms.Button CreateDecksBtn;
     }
 }
